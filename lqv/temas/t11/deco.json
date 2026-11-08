@@ -1,0 +1,31 @@
+{
+  "_comentario": "Fondo de neones de la Temporada 11. Después de editar, correr: node herramientas/generar-deco.js temas/t11",
+  "neones": {
+    "cyan": "#00e5ff",
+    "magenta": "#ff2bd6",
+    "yellow": "#ffe14a",
+    "orange": "#ff7a1a",
+    "red": "#ff3a4a",
+    "lime": "#b6ff3c",
+    "violet": "#b066ff"
+  },
+  "coloresIconos": ["cyan", "magenta", "yellow", "orange", "red", "violet"],
+  "coloresLaser": ["cyan", "magenta", "orange", "violet"],
+  "bokeh": [
+    "rgba(255,255,255,.85)",
+    "rgba(255,170,90,.85)",
+    "rgba(255,43,214,.7)",
+    "rgba(0,229,255,.7)",
+    "rgba(176,102,255,.7)"
+  ],
+  "iconos": [
+    "guitar", "microphone-stage", "microphone", "music-note", "music-notes",
+    "vinyl-record", "headphones", "radio", "piano-keys", "pizza", "hamburger",
+    "cookie", "popcorn", "bowl-food", "fork-knife", "ice-cream", "beer-bottle",
+    "beer-stein", "wine", "martini", "coffee", "champagne", "mask-happy",
+    "mask-sad", "film-strip", "chef-hat", "cigarette"
+  ],
+  "densidad": 1,
+  "brillo": { "mid": [1, 3, 6], "hard": [1, 4, 9] },
+  "brilloNucleo": "#fff"
+}

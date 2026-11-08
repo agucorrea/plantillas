@@ -1,0 +1,30 @@
+{
+  "_comentario": "PROPUESTA T12 · 'Terraza de verano'. Neones cálidos + aguamarina, solo música y bebidas. Regenerar con: node herramientas/generar-deco.js temas/t12",
+  "neones": {
+    "coral": "#ff5e5b",
+    "ambar": "#ffb627",
+    "agua": "#2ef2d0",
+    "orquidea": "#e05cff",
+    "lima": "#c6ff4d",
+    "blanco": "#fff4e6"
+  },
+  "coloresIconos": ["coral", "ambar", "agua", "orquidea", "lima"],
+  "coloresLaser": ["coral", "ambar", "agua"],
+  "bokeh": [
+    "rgba(255,244,230,.8)",
+    "rgba(255,182,39,.8)",
+    "rgba(255,94,91,.7)",
+    "rgba(46,242,208,.6)"
+  ],
+  "iconos": [
+    "guitar", "microphone-stage", "microphone", "music-note", "music-notes",
+    "vinyl-record", "headphones", "piano-keys", "radio",
+    "wine", "martini", "champagne", "beer-stein", "coffee", "ice-cream"
+  ],
+  "densidad": 0.8,
+  "escalaIconos": 1.1,
+  "brillo": { "mid": [1, 4, 8], "hard": [1.5, 5, 12] },
+  "brilloNucleo": "#fff4e6",
+  "laserSombras": [8, 20, 40],
+  "laserNucleo": "#fff4e6"
+}

@@ -1,0 +1,21 @@
+{
+  "numero": "35",
+  "temporada": "T11",
+  "dia": "Miércoles",
+  "fecha": "14/10",
+  "notas": [
+    {
+      "titulo": "CATARTE BY LEBLON",
+      "descripcion": "Karina Romero, organizadora de Catarte by Leblon, nos cuenta todo lo que se viene en esta propuesta.",
+      "nombre": "KARINA ROMERO",
+      "foto": "fotos/nota-1-catarte.jpg",
+      "foto_pos": "45% 22%"
+    },
+    {
+      "titulo": "ZAMOMO",
+      "descripcion": "Eazala María, autora del libro infantil Zamomo, nos cuenta sobre la historia y los personajes del libro.",
+      "foto": "fotos/nota-2-zamomo.jpg",
+      "foto_pos": "center 38%"
+    }
+  ]
+}

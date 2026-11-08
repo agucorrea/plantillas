@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>LQV · Portada web/YouTube · 1</title>
+<!--
+PORTADA WEB / YOUTUBE · 1920×1080 · 1 nota
+Marcadores: 35 (con dos dígitos), T12, MIÉRCOLES, 14/10,
+            ../fotos/nota-1-catarte.jpg (URLs), 45% 22% (encuadres CSS)
+-->
+<link rel="stylesheet" href="../../temas/t12/tema.css">
+<style>
+  /* ─── Base común (no tocar: solo estructura, todo lo visual viene del tema) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+  html, body { margin: 0; padding: 0; background: var(--lqv-bg-edge); }
+  body { width: 1920px; height: 1080px; overflow: hidden; }
+
+  .lqv-frame {
+    position: relative; overflow: hidden; isolation: isolate;
+    width: 1920px; height: 1080px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-weight: var(--peso-texto);
+    font-size: 16px;
+  }
+  .lqv-frame::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--fondo-halo); }
+  .lqv-frame::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: var(--fondo-grano); background-size: var(--fondo-grano-tamano);
+    mix-blend-mode: var(--fondo-grano-mezcla);
+  }
+  .lqv-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-repeat: no-repeat; background-position: 0 0; background-size: 100% 100%; }
+  .lqv-piso { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none; background: var(--piso); }
+  .lqv-piso::before {
+    content: ""; position: absolute; top: 0; left: var(--linea-margen); right: var(--linea-margen);
+    height: var(--linea-alto); background: var(--linea); filter: var(--linea-desenfoque); box-shadow: var(--linea-brillo);
+  }
+  .lqv-logo { position: absolute; z-index: 5; aspect-ratio: 534 / 288; background: var(--logo) no-repeat center / contain; filter: var(--logo-brillo); }
+  .lqv-contenido { position: absolute; inset: 0; z-index: 4; }
+
+  /* Foto */
+  .foto {
+    position: relative; overflow: hidden; box-sizing: border-box;
+    width: 100%; height: 100%;
+    background: var(--foto-fondo); border: var(--foto-borde); box-shadow: var(--foto-sombra);
+    border-radius: var(--foto-radio);
+  }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; filter: var(--foto-filtro); }
+
+  /* Día + fecha */
+  .fecha {
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); line-height: 1; white-space: nowrap;
+    --fit-ls: .14em; --fit-sombra: var(--brillo-blanco);
+  }
+  .fecha b { font-weight: inherit; color: var(--acento-fecha); text-shadow: var(--brillo-fecha); }
+
+  /* Botón Spotify (--s = tamaño) */
+  .spotify {
+    display: inline-flex; align-items: center; gap: calc(var(--s) * .32);
+    padding: calc(var(--s) * .22) calc(var(--s) * .5);
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); letter-spacing: .08em; color: var(--boton-texto);
+    border: var(--boton-borde); border-radius: calc(var(--s) * var(--boton-radio));
+    background: var(--boton-fondo); box-shadow: var(--boton-sombra); backdrop-filter: var(--boton-desenfoque);
+  }
+  .spotify-etq { font-size: calc(var(--s) * .52); font-family: var(--fuente-mono); font-weight: var(--peso-mono); text-transform: uppercase; letter-spacing: .2em; opacity: var(--boton-etiqueta-opacidad); }
+  .spotify-ico { display: block; flex: none; width: calc(var(--s) * 1.25); height: calc(var(--s) * 1.25); background: var(--spotify-icono) no-repeat center / contain; filter: var(--spotify-brillo); }
+  .spotify-txt { font-size: calc(var(--s) * 1.1); line-height: 1; letter-spacing: .04em; text-shadow: var(--boton-texto-brillo); text-transform: var(--mayusculas-titulo); }
+
+  /* Ajuste automático de tamaño de texto (sin JavaScript).
+     Una copia invisible mide el ancho del texto en una sola línea; con eso se
+     calcula el tamaño más grande que entra en el ancho y en las líneas
+     disponibles (--fit-base = tamaño ideal, --fit-h = alto máximo). */
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); text-shadow: var(--fit-sombra, none); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { display: block; width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  .fit-1 .fit-txt { white-space: nowrap; font-size: min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99); }
+
+  /* ─── Diseño de esta pieza (solo posiciones y tamaños) ─── */
+  .lqv-deco { background-image: var(--deco-web); }
+  .lqv-piso { height: 20%; }
+  .lqv-logo { top: 54px; left: 96px; width: 280px; }
+
+  /* Márgenes seguros 16:9: 96px a los costados, 54px arriba. Abajo a la derecha queda libre
+     para la duración / el "EN VIVO" que YouTube superpone en la miniatura. */
+  .heroe { position: absolute; top: 236px; left: 96px; width: 620px; }
+  .rotulo { font-family: var(--fuente-mono); font-weight: var(--peso-mono); font-size: 24px; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--acento-programa); text-shadow: var(--brillo-acento); }
+  .numero { font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); color: var(--texto); line-height: .82;
+    --fit-base: 360px; --fit-ls: .02em; --fit-sombra: var(--brillo-numero); }
+  .temporada { display: flex; align-items: baseline; gap: 14px; white-space: nowrap; }
+  .temporada-cod { font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo); font-size: 64px; letter-spacing: .04em;
+    color: var(--acento-temporada); text-shadow: var(--brillo-temporada); }
+  .temporada-txt { font-family: var(--fuente-mono); font-weight: var(--peso-mono); font-size: 20px; letter-spacing: .2em; text-transform: uppercase; color: var(--texto-tenue); }
+
+  .tira { position: absolute; top: 80px; right: 96px; width: 1056px; height: 660px;
+    display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; }
+
+  .pie { position: absolute; left: 96px; right: 96px; bottom: 120px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .pie .fecha { flex: 1 1 0; min-width: 0; --fit-base: 84px; }
+  .pie .spotify { flex: none; --s: 54px; }
+</style>
+</head>
+<body>
+<div class="lqv-frame">
+  <div class="lqv-deco"></div>
+  <div class="lqv-piso"></div>
+  <div class="lqv-logo"></div>
+  <div class="lqv-contenido">
+    <div class="heroe">
+      <div class="rotulo">Programa</div>
+      <div class="numero fit fit-1"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">35</span></div><span class="fit-medida" aria-hidden="true">35</span></div></div>
+      <div class="temporada"><span class="temporada-cod">T12</span><span class="temporada-txt">temporada</span></div>
+    </div>
+    <div class="tira">
+      <div class="foto"><img src="../fotos/nota-1-catarte.jpg" alt="" style="object-position: 45% 22%"></div>
+    </div>
+    <div class="pie">
+      <div class="fecha fit fit-1"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">MIÉRCOLES <b>14/10</b></span></div><span class="fit-medida" aria-hidden="true">MIÉRCOLES <b>14/10</b></span></div></div>
+      <div class="spotify"><span class="spotify-etq">escuchanos en</span><span class="spotify-ico"></span><span class="spotify-txt">Spotify</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

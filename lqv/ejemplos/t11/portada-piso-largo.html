@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>LQV · Portada de nota en piso</title>
+<!--
+PORTADA DE NOTA EN PISO · 1920×1080 (nota individual, versión grande de la miniatura de YouTube)
+Marcadores: 35, T11, MIÉRCOLES, 14/10, MARÍA EUGENIA FERNÁNDEZ DE LA SERNA Y LOS MÚSICOS DE LA CAMERATA (entrevistado),
+            ../fotos/nota-2-facu.jpg (URL), center 25% (encuadre CSS)
+-->
+<link rel="stylesheet" href="../../temas/t11/tema.css">
+<style>
+  /* ─── Base común (no tocar: solo estructura, todo lo visual viene del tema) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+  html, body { margin: 0; padding: 0; background: var(--lqv-bg-edge); }
+  body { width: 1920px; height: 1080px; overflow: hidden; }
+
+  .lqv-frame {
+    position: relative; overflow: hidden; isolation: isolate;
+    width: 1920px; height: 1080px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-weight: var(--peso-texto);
+    font-size: 16px;
+  }
+  .lqv-frame::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--fondo-halo); }
+  .lqv-frame::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: var(--fondo-grano); background-size: var(--fondo-grano-tamano);
+    mix-blend-mode: var(--fondo-grano-mezcla);
+  }
+  .lqv-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-repeat: no-repeat; background-position: 0 0; background-size: 100% 100%; }
+  .lqv-piso { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none; background: var(--piso); }
+  .lqv-piso::before {
+    content: ""; position: absolute; top: 0; left: var(--linea-margen); right: var(--linea-margen);
+    height: var(--linea-alto); background: var(--linea); filter: var(--linea-desenfoque); box-shadow: var(--linea-brillo);
+  }
+  .lqv-logo { position: absolute; z-index: 5; aspect-ratio: 534 / 288; background: var(--logo) no-repeat center / contain; filter: var(--logo-brillo); }
+  .lqv-contenido { position: absolute; inset: 0; z-index: 4; }
+
+  /* Foto */
+  .foto {
+    position: relative; overflow: hidden; box-sizing: border-box;
+    width: 100%; height: 100%;
+    background: var(--foto-fondo); border: var(--foto-borde); box-shadow: var(--foto-sombra);
+    border-radius: var(--foto-radio);
+  }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; filter: var(--foto-filtro); }
+
+  /* Día + fecha */
+  .fecha {
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); line-height: 1; white-space: nowrap;
+    --fit-ls: .14em; --fit-sombra: var(--brillo-blanco);
+  }
+  .fecha b { font-weight: inherit; color: var(--acento-fecha); text-shadow: var(--brillo-fecha); }
+
+  /* Botón Spotify (--s = tamaño) */
+  .spotify {
+    display: inline-flex; align-items: center; gap: calc(var(--s) * .32);
+    padding: calc(var(--s) * .22) calc(var(--s) * .5);
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); letter-spacing: .08em; color: var(--boton-texto);
+    border: var(--boton-borde); border-radius: calc(var(--s) * var(--boton-radio));
+    background: var(--boton-fondo); box-shadow: var(--boton-sombra); backdrop-filter: var(--boton-desenfoque);
+  }
+  .spotify-etq { font-size: calc(var(--s) * .52); font-family: var(--fuente-mono); font-weight: var(--peso-mono); text-transform: uppercase; letter-spacing: .2em; opacity: var(--boton-etiqueta-opacidad); }
+  .spotify-ico { display: block; flex: none; width: calc(var(--s) * 1.25); height: calc(var(--s) * 1.25); background: var(--spotify-icono) no-repeat center / contain; filter: var(--spotify-brillo); }
+  .spotify-txt { font-size: calc(var(--s) * 1.1); line-height: 1; letter-spacing: .04em; text-shadow: var(--boton-texto-brillo); text-transform: var(--mayusculas-titulo); }
+
+  /* Ajuste automático de tamaño de texto (sin JavaScript).
+     Una copia invisible mide el ancho del texto en una sola línea; con eso se
+     calcula el tamaño más grande que entra en el ancho y en las líneas
+     disponibles (--fit-base = tamaño ideal, --fit-h = alto máximo). */
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); text-shadow: var(--fit-sombra, none); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { display: block; width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  .fit-1 .fit-txt { white-space: nowrap; font-size: min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99); }
+
+  /* ─── Diseño de esta pieza (solo posiciones y tamaños) ─── */
+  .lqv-deco { background-image: var(--deco-piso); }
+  .lqv-piso { height: 12%; }
+  .lqv-logo { top: 54px; left: 96px; width: 280px; }
+
+  /* Márgenes seguros 16:9: 96px a los costados, 54px arriba. La foto empieza debajo del logo. */
+  .marco-foto { position: absolute; top: 230px; left: 96px; width: 720px; height: 690px; }
+  .marco-foto .foto { border-radius: calc(var(--foto-radio) * 1.5); }
+
+  .bloque { position: absolute; top: 150px; right: 96px; width: 944px; display: flex; flex-direction: column; gap: 27px; }
+  .programa { display: flex; align-items: baseline; gap: 21px; font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); white-space: nowrap; }
+  .programa-num { font-size: 96px; letter-spacing: .04em; color: var(--texto); text-shadow: var(--brillo-blanco); text-transform: var(--mayusculas-titulo); }
+  .programa-temp { font-family: var(--fuente-mono); font-weight: var(--peso-mono); font-size: 42px; letter-spacing: .08em;
+    color: var(--acento-programa); text-shadow: var(--brillo-acento); }
+  .bloque .fecha { --fit-base: 63px; }
+  .nota-a { margin-top: 18px; font-family: var(--fuente-mono); font-weight: var(--peso-mono); font-size: 36px; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--acento-nota-a); text-shadow: var(--brillo-acento); }
+  .nombre { font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); line-height: 1.18; text-wrap: balance;
+    --fit-base: 180px; --fit-lh: 1.18; --fit-h: 400px; --fit-ls: -.005em; --fit-sombra: var(--brillo-nombre); }
+  .nombre .fit-txt { font-size: max(
+    min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+    min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.18),
+    min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.18),
+    min(var(--fit-base), var(--fit-h) / (4 * var(--fit-lh)), 4 * var(--fit-base) * var(--fit-r) / 1.18),
+    min(var(--fit-base), var(--fit-h) / (5 * var(--fit-lh)), 5 * var(--fit-base) * var(--fit-r) / 1.18)
+  ); }
+
+  .estrella { position: absolute; bottom: 60px; width: 84px; height: 84px; z-index: 5; font-size: 24px;
+    background: var(--estrella) no-repeat center / contain; filter: var(--estrella-brillo); }
+  .estrella.izq { left: 96px; }
+  .estrella.der { right: 96px; }
+</style>
+</head>
+<body>
+<div class="lqv-frame">
+  <div class="lqv-deco"></div>
+  <div class="lqv-piso"></div>
+  <div class="lqv-logo"></div>
+  <div class="lqv-contenido">
+    <div class="marco-foto"><div class="foto"><img src="../fotos/nota-2-facu.jpg" alt="" style="object-position: center 25%"></div></div>
+    <div class="bloque">
+      <div class="programa"><span class="programa-num">PROGRAMA 35</span><span class="programa-temp">| T11</span></div>
+      <div class="fecha fit fit-1"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">MIÉRCOLES <b>14/10</b></span></div><span class="fit-medida" aria-hidden="true">MIÉRCOLES <b>14/10</b></span></div></div>
+      <div class="nota-a">Nota a</div>
+      <div class="nombre fit fit-n"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">MARÍA EUGENIA FERNÁNDEZ DE LA SERNA Y LOS MÚSICOS DE LA CAMERATA</span></div><span class="fit-medida" aria-hidden="true">MARÍA EUGENIA FERNÁNDEZ DE LA SERNA Y LOS MÚSICOS DE LA CAMERATA</span></div></div>
+    </div>
+    <div class="estrella izq"></div>
+    <div class="estrella der"></div>
+  </div>
+</div>
+</body>
+</html>

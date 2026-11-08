@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LQV · TEMA DE TEMPORADA T11
+   Todo lo estético vive acá. Las plantillas solo usan estas variables.
+   Para una temporada nueva: copiar esta carpeta, cambiar valores y
+   regenerar el fondo de neones (node herramientas/generar-deco.js temas/tNN).
+   Las rutas url() son relativas a este archivo.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=block');
+
+/* Las imágenes del tema se registran como <url> para que sus rutas se
+   resuelvan siempre relativas a ESTA carpeta, no a la plantilla. */
+@property --deco-placa { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-carrusel { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-web { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-piso { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --logo { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --spotify-icono { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --estrella { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+
+:root {
+  --tema-nombre: "T11";
+
+  /* ── Tipografías ─────────────────────────────────────────────────────── */
+  --fuente-titulo: 'Bebas Neue', sans-serif;          /* títulos, número, fecha, botón */
+  --fuente-texto: 'Barlow Condensed', sans-serif;     /* descripciones */
+  --fuente-mono: 'IBM Plex Mono', monospace;          /* etiquetas chicas */
+  --peso-titulo: 400;
+  --peso-texto: 400;
+  --peso-mono: 400;
+  --mayusculas-titulo: none;      /* Bebas ya es todo mayúsculas */
+
+  /* ── Paleta ──────────────────────────────────────────────────────────── */
+  --lqv-bg-0: #050817;
+  --lqv-bg-1: #0a1130;
+  --lqv-bg-2: #0d1840;
+  --lqv-bg-edge: #02050f;
+  --neon-cyan: #00e5ff;
+  --neon-magenta: #ff2bd6;
+  --neon-yellow: #ffe14a;
+  --neon-orange: #ff7a1a;
+  --neon-red: #ff3a4a;
+  --neon-lime: #b6ff3c;
+  --neon-violet: #b066ff;
+
+  --texto: #fff;
+  --texto-descripcion: rgba(255,255,255,.88);
+  --texto-tenue: rgba(255,255,255,.55);
+
+  /* Qué neón usa cada rol */
+  --acento-programa: var(--neon-cyan);      /* "PROGRAMA", "| T11" */
+  --acento-temporada: var(--neon-magenta);  /* "T11" grande */
+  --acento-fecha: var(--neon-yellow);       /* "14/10" */
+  --acento-etiqueta: var(--neon-yellow);    /* chip "NOTA 01" */
+  --acento-nota-a: var(--neon-magenta);     /* "NOTA A" */
+
+  /* ── Fondo ───────────────────────────────────────────────────────────── */
+  --fondo: radial-gradient(80% 60% at 50% 35%, var(--lqv-bg-2) 0%, var(--lqv-bg-1) 45%, var(--lqv-bg-0) 80%, var(--lqv-bg-edge) 100%);
+  --fondo-halo:
+    radial-gradient(45% 30% at 50% 30%, rgba(60,120,255,.18), transparent 70%),
+    radial-gradient(30% 25% at 25% 80%, rgba(255,43,214,.08), transparent 70%),
+    radial-gradient(30% 25% at 80% 75%, rgba(0,229,255,.08), transparent 70%);
+  --fondo-grano: radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+  --fondo-grano-tamano: 3px 3px;
+  --fondo-grano-mezcla: overlay;
+
+  /* Fondo de íconos neón + láser + destellos (SVG generados, uno por formato) */
+  --deco-placa: url("deco-placa.svg");
+  --deco-carrusel: url("deco-carrusel.svg");
+  --deco-web: url("deco-web.svg");
+  --deco-piso: url("deco-piso.svg");
+
+  /* ── Piso de estudio y línea de luz ──────────────────────────────────── */
+  --piso: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.85) 100%);
+  --linea: linear-gradient(90deg, transparent 0%, rgba(0,229,255,.45) 30%, rgba(176,102,255,.55) 60%, transparent 100%);
+  --linea-alto: 2px;
+  --linea-margen: 8%;
+  --linea-desenfoque: blur(.5px);
+  --linea-brillo: 0 0 12px rgba(0,229,255,.35), 0 0 24px rgba(176,102,255,.25);
+
+  /* ── Brillos de texto ────────────────────────────────────────────────── */
+  --brillo-numero: 0 0 .05em rgba(255,255,255,.6), 0 0 .35em rgba(255,255,255,.15);
+  --brillo-titulo: 0 0 .1em rgba(255,255,255,.4);
+  --brillo-nombre: 0 0 .1em rgba(255,255,255,.4), 0 0 .35em rgba(0,229,255,.25);
+  --brillo-blanco: 0 0 .15em rgba(255,255,255,.5);    /* día, "PROGRAMA 35" */
+  --brillo-fecha: 0 0 .2em currentColor, 0 0 .6em currentColor, 0 0 1.2em currentColor;
+  --brillo-acento: 0 0 .25em currentColor, 0 0 .6em currentColor;
+  --brillo-temporada: 0 0 .15em currentColor, 0 0 .5em currentColor;
+  --brillo-chip: 0 0 .2em currentColor, 0 0 .5em currentColor;
+  --brillo-descripcion: none;
+
+  /* ── Fotos ───────────────────────────────────────────────────────────── */
+  --foto-fondo: #0a0705;
+  --foto-radio: 14px;          /* tiras de portada, piso */
+  --foto-radio-placa: 10px;    /* foto grande de la placa */
+  --foto-borde: none;
+  --foto-sombra: none;
+  --foto-filtro: none;
+
+  /* ── Chip de etiqueta ("NOTA 01") ───────────────────────────────────── */
+  --chip-fondo: rgba(0,0,0,.55);
+  --chip-borde: none;
+  --chip-radio: 6px;
+  --chip-desenfoque: blur(4px);
+
+  /* ── Botón "Escuchanos en Spotify" ───────────────────────────────────── */
+  --boton-borde: 2px solid rgba(30,215,96,.65);
+  --boton-fondo: rgba(8,12,24,.55);
+  --boton-sombra: 0 0 .8em rgba(30,215,96,.45), inset 0 0 .6em rgba(30,215,96,.25), 0 6px 24px rgba(0,0,0,.4);
+  --boton-radio: .55;          /* proporción del tamaño del botón */
+  --boton-desenfoque: blur(2px);
+  --boton-texto: #fff;
+  --boton-etiqueta-opacidad: .9;
+  --boton-texto-brillo: 0 0 .15em rgba(255,255,255,.5), 0 0 .5em rgba(30,215,96,.45);
+  --spotify-icono: url("spotify.svg");
+  --spotify-brillo: drop-shadow(0 0 .12em #1ED760) drop-shadow(0 0 .35em #1ED760) drop-shadow(0 0 .8em #1ED760);
+
+  /* ── Logo y estrella ─────────────────────────────────────────────────── */
+  --logo: url("logo-lqv.svg");
+  --logo-brillo: drop-shadow(0 0 .25em rgba(255,255,255,.35)) drop-shadow(0 0 .8em rgba(0,229,255,.25));
+  --estrella: url("estrella.svg");
+  --estrella-brillo: drop-shadow(0 0 .15em #fff) drop-shadow(0 0 .5em #fff) drop-shadow(0 0 1em #fff);
+}

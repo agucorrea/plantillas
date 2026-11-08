@@ -1,0 +1,118 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LQV · TEMA DE TEMPORADA T12 — PROPUESTA "TERRAZA DE VERANO"
+   Mismas variables que T11, otros valores. Sirve para comprobar que el
+   cambio de temporada no toca las plantillas.
+   Las rutas url() son relativas a este archivo.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Semi+Condensed:wght@400;500&family=Space+Mono:wght@400;700&display=block');
+
+@property --deco-placa { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-carrusel { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-web { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --deco-piso { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --logo { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --spotify-icono { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+@property --estrella { syntax: '<url>'; inherits: true; initial-value: url("data:,"); }
+
+:root {
+  --tema-nombre: "T12";
+
+  /* ── Tipografías ─────────────────────────────────────────────────────── */
+  --fuente-titulo: 'Anton', sans-serif;
+  --fuente-texto: 'Barlow Semi Condensed', sans-serif;
+  --fuente-mono: 'Space Mono', monospace;
+  --peso-titulo: 400;
+  --peso-texto: 400;
+  --peso-mono: 400;
+  --mayusculas-titulo: uppercase;
+
+  /* ── Paleta ──────────────────────────────────────────────────────────── */
+  --lqv-bg-0: #1a0b24;
+  --lqv-bg-1: #2a0f33;
+  --lqv-bg-2: #3d1240;
+  --lqv-bg-edge: #0c0612;
+  --neon-cyan: #2ef2d0;      /* aguamarina */
+  --neon-magenta: #e05cff;   /* orquídea */
+  --neon-yellow: #ffb627;    /* ámbar */
+  --neon-orange: #ff5e5b;    /* coral */
+  --neon-red: #ff5e5b;
+  --neon-lime: #c6ff4d;
+  --neon-violet: #e05cff;
+
+  --texto: #fff4e6;
+  --texto-descripcion: rgba(255,244,230,.86);
+  --texto-tenue: rgba(255,244,230,.6);
+
+  --acento-programa: var(--neon-yellow);
+  --acento-temporada: var(--neon-orange);
+  --acento-fecha: var(--neon-cyan);
+  --acento-etiqueta: #1a0b24;
+  --acento-nota-a: var(--neon-yellow);
+
+  /* ── Fondo ───────────────────────────────────────────────────────────── */
+  --fondo: radial-gradient(90% 70% at 30% 20%, var(--lqv-bg-2) 0%, var(--lqv-bg-1) 40%, var(--lqv-bg-0) 78%, var(--lqv-bg-edge) 100%);
+  --fondo-halo:
+    radial-gradient(50% 35% at 75% 15%, rgba(255,94,91,.22), transparent 70%),
+    radial-gradient(35% 30% at 15% 85%, rgba(255,182,39,.12), transparent 70%),
+    radial-gradient(35% 30% at 85% 80%, rgba(46,242,208,.10), transparent 70%);
+  --fondo-grano: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 4px);
+  --fondo-grano-tamano: auto;
+  --fondo-grano-mezcla: overlay;
+
+  --deco-placa: url("deco-placa.svg");
+  --deco-carrusel: url("deco-carrusel.svg");
+  --deco-web: url("deco-web.svg");
+  --deco-piso: url("deco-piso.svg");
+
+  /* ── Piso y línea de luz ─────────────────────────────────────────────── */
+  --piso: linear-gradient(180deg, transparent 0%, rgba(12,6,18,.5) 55%, rgba(12,6,18,.92) 100%);
+  --linea: linear-gradient(90deg, transparent 0%, rgba(255,94,91,.7) 25%, rgba(255,182,39,.8) 55%, rgba(46,242,208,.6) 80%, transparent 100%);
+  --linea-alto: 3px;
+  --linea-margen: 4%;
+  --linea-desenfoque: blur(.4px);
+  --linea-brillo: 0 0 14px rgba(255,94,91,.45), 0 0 30px rgba(255,182,39,.3);
+
+  /* ── Brillos de texto ────────────────────────────────────────────────── */
+  --brillo-numero: 0 0 .04em rgba(255,182,39,.7), 0 0 .3em rgba(255,94,91,.35);
+  --brillo-titulo: 0 0 .08em rgba(255,182,39,.45);
+  --brillo-nombre: 0 0 .08em rgba(255,244,230,.4), 0 0 .3em rgba(255,94,91,.35);
+  --brillo-blanco: 0 0 .12em rgba(255,244,230,.45);
+  --brillo-fecha: 0 0 .15em currentColor, 0 0 .5em currentColor;
+  --brillo-acento: 0 0 .2em currentColor, 0 0 .5em currentColor;
+  --brillo-temporada: 0 0 .12em currentColor, 0 0 .45em currentColor;
+  --brillo-chip: none;
+  --brillo-descripcion: none;
+
+  /* ── Fotos ───────────────────────────────────────────────────────────── */
+  --foto-fondo: #12081a;
+  --foto-radio: 28px;
+  --foto-radio-placa: 28px;
+  --foto-borde: 3px solid rgba(255,182,39,.85);
+  --foto-sombra: 0 0 18px rgba(255,182,39,.35), 0 10px 30px rgba(0,0,0,.45);
+  --foto-filtro: saturate(1.08) contrast(1.03);
+
+  /* ── Chip de etiqueta ────────────────────────────────────────────────── */
+  --chip-fondo: #ffb627;
+  --chip-borde: none;
+  --chip-radio: 999px;
+  --chip-desenfoque: none;
+
+  /* ── Botón Spotify ───────────────────────────────────────────────────── */
+  --boton-borde: 3px solid #2ef2d0;
+  --boton-fondo: rgba(26,11,36,.75);
+  --boton-sombra: 0 0 .9em rgba(46,242,208,.5), inset 0 0 .5em rgba(46,242,208,.3), 0 6px 24px rgba(0,0,0,.45);
+  --boton-radio: .18;
+  --boton-desenfoque: none;
+  --boton-texto: #fff4e6;
+  --boton-etiqueta-opacidad: .85;
+  --boton-texto-brillo: 0 0 .12em rgba(46,242,208,.6);
+  --spotify-icono: url("spotify.svg");
+  --spotify-brillo: drop-shadow(0 0 .1em #1ED760) drop-shadow(0 0 .3em #1ED760);
+
+  /* ── Logo y estrella ─────────────────────────────────────────────────── */
+  --logo: url("logo-lqv.svg");
+  --logo-brillo: drop-shadow(0 0 .25em rgba(255,182,39,.5)) drop-shadow(0 0 .8em rgba(255,94,91,.35));
+  --estrella: url("estrella.svg");
+  --estrella-brillo: drop-shadow(0 0 .15em #ffb627) drop-shadow(0 0 .5em #ffb627) drop-shadow(0 0 1em #ff5e5b);
+}
