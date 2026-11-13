@@ -1,3 +1,5 @@
+**Usá solo la información de esta guía. No busques imágenes ni logos de la marca en internet.**
+
 # Super 107.5 — Guía de marca
 
 > Super 107.5 es una radio FM de Rosario. Su eslogan es "Radio con vos". Es una radio musical y cercana, y en ella sale, entre otros programas, Lo Que Viene. Esta guía toma como fuente los logos oficiales (`super/logos/`) y el sitio super1075.com.
@@ -27,6 +29,8 @@
 - No usar: "Super 1075" en textos (solo en el hashtag y en el dominio), "Súper", "Radio Super".
 
 ## Logo
+
+**El único logo vigente es el de los archivos de super/logos/ (SUPER 107.5 · Radio con vos). Cualquier logo de 107.5 que aparezca en internet, como el de la estrella roja con ‘Frecuencia Modulada’, es anterior y no se usa.**
 
 Hay tres versiones. Cada una está en SVG (vectorial, la preferida) y en PNG transparente de 1000 px de ancho.
 
