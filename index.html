@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantillas de marca</title>
+<meta name="description" content="Índice de guías de marca.">
+<style>
+  :root { --bg: #f4f4f4; --fg: #121c25; --card: #ffffff; --muted: #5a6670; --line: rgba(18,28,37,.15); }
+  @media (prefers-color-scheme: dark) { :root { --bg: #1a1a1a; --fg: #f2f2f2; --card: #232323; --muted: #a9b0b6; --line: rgba(255,255,255,.12); } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: Arial, Helvetica, sans-serif; line-height: 1.5; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 16px; }
+  h1 { margin: 0 0 8px; }
+  p.lead { margin: 0 0 28px; color: var(--muted); }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; }
+  li h2 { margin: 0 0 4px; font-size: 20px; }
+  li p { margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+  a { color: inherit; }
+  .links a { margin-right: 16px; font-weight: bold; }
+  footer { margin-top: 32px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Plantillas de marca</h1>
+  <p class="lead">Guías de marca, cada una en versión web y en Markdown para asistentes de IA.</p>
+  <ul>
+    <li>
+      <h2>Lo Que Viene</h2>
+      <p>Programa de radio · Miércoles de 19 a 20:30 hs · Super 107.5</p>
+      <div class="links">
+        <a href="https://agucorrea.github.io/plantillas/lqv/">Guía web</a>
+        <a href="https://agucorrea.github.io/plantillas/lqv/marca.md">marca.md</a>
+      </div>
+    </li>
+  </ul>
+  <footer>Para IA: <a href="https://agucorrea.github.io/plantillas/llms.txt">llms.txt</a></footer>
+</div>
+</body>
+</html>

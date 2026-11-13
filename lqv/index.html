@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lo Que Viene — Guía de marca</title>
+<meta name="description" content="Guía de marca de Lo Que Viene: miércoles de 19 a 20:30 por Super 107.5. Temporada T11.">
+<link rel="alternate" type="text/markdown" href="https://agucorrea.github.io/plantillas/lqv/marca.md">
+<!-- Colores y fuentes: tema T11, la misma fuente que usan las plantillas -->
+<link rel="stylesheet" href="https://agucorrea.github.io/plantillas/lqv/temas/t11/tema.css">
+<style>
+  * { box-sizing: border-box; }
+  html { background: var(--lqv-bg-edge, #02050f); }
+  body {
+    margin: 0; min-height: 100vh; color: var(--texto, #fff);
+    background: var(--fondo-halo), var(--fondo, #0a1130);
+    background-attachment: fixed;
+    font-family: var(--fuente-texto, 'Barlow Condensed', sans-serif); font-size: 19px; line-height: 1.45;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  a { color: inherit; }
+  .mono { font-family: var(--fuente-mono); text-transform: uppercase; letter-spacing: .2em; font-size: 13px; }
+  .titulo { font-family: var(--fuente-titulo); font-weight: 400; letter-spacing: .02em; line-height: 1; }
+
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; padding: 8px 0 32px; }
+  .logo { width: min(320px, 70vw); height: auto; filter: var(--logo-brillo); }
+  .hero-txt .mono { color: var(--neon-cyan); text-shadow: var(--brillo-acento); }
+  .hero-txt h1 { margin: 6px 0 0; font-size: clamp(44px, 8vw, 72px); text-shadow: var(--brillo-blanco); }
+  .hero-txt h1 b { font-weight: 400; color: var(--neon-yellow); text-shadow: var(--brillo-fecha); }
+  .hero-txt p { margin: 6px 0 0; color: var(--texto-descripcion); }
+
+  nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .chip { display: inline-block; padding: 8px 14px; border-radius: var(--chip-radio, 6px); background: var(--chip-fondo); backdrop-filter: var(--chip-desenfoque);
+    color: var(--neon-yellow); text-shadow: var(--brillo-chip); text-decoration: none; }
+
+  section { margin: 28px 0; padding: 24px; border-radius: 14px; background: rgba(5,8,23,.6); border: 1px solid rgba(255,255,255,.08); }
+  h2 { margin: 0 0 14px; font-size: 40px; }
+  h2 .mono { display: block; color: var(--neon-magenta); text-shadow: var(--brillo-temporada); margin-bottom: 6px; font-size: 12px; }
+  h3 { margin: 22px 0 10px; color: var(--texto-tenue); font-weight: 400; }
+  p { margin: 0 0 10px; color: var(--texto-descripcion); }
+  ul { margin: 6px 0; padding-left: 20px; color: var(--texto-descripcion); }
+  li { margin: 4px 0; }
+  code { font-family: var(--fuente-mono); font-size: .8em; color: var(--texto); }
+
+  .datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .dato { padding: 14px; border-radius: 10px; background: rgba(255,255,255,.04); }
+  .dato .mono { color: var(--texto-tenue); font-size: 11px; }
+  .dato .titulo { font-size: 30px; margin-top: 4px; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .sw { border-radius: 10px; overflow: hidden; background: rgba(255,255,255,.04); }
+  .sw .chipc { height: 64px; }
+  .sw.neon .chipc { box-shadow: inset 0 0 18px rgba(255,255,255,.35); }
+  .sw .meta { padding: 8px 10px; font-size: 15px; line-height: 1.3; }
+  .sw .meta code { display: block; }
+
+  .fuentes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .fuente { padding: 16px; border-radius: 10px; background: rgba(255,255,255,.04); }
+  .fuente .muestra { font-size: 44px; line-height: 1.05; margin: 6px 0 8px; color: var(--texto); }
+  .fuente .mono { color: var(--texto-tenue); font-size: 11px; }
+
+  .tabla { width: 100%; border-collapse: collapse; font-size: 17px; }
+  .tabla th, .tabla td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,.1); vertical-align: top; }
+  .tabla th { font-family: var(--fuente-mono); font-weight: 400; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--texto-tenue); }
+  .tabla-scroll { overflow-x: auto; }
+
+  .ejemplos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; align-items: start; }
+  .ej figcaption { margin-top: 8px; font-size: 15px; color: var(--texto-tenue); }
+  .ej figcaption a { color: var(--texto); }
+  figure { margin: 0; }
+  .vista { position: relative; overflow: hidden; border-radius: 10px; background: var(--lqv-bg-edge); }
+  .vista.v { aspect-ratio: 1080 / 1350; }
+  .vista.h { aspect-ratio: 1920 / 1080; }
+  .vista iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; pointer-events: none; }
+  .vista.v iframe { width: 1080px; height: 1350px; }
+  .vista.h iframe { width: 1920px; height: 1080px; }
+
+  footer { margin-top: 36px; text-align: center; color: var(--texto-tenue); font-size: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="logo" src="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv.svg" alt="Lo Que Viene | FM107.5" width="534" height="288">
+    <div class="hero-txt">
+      <div class="mono">Guía de marca · T11</div>
+      <h1 class="titulo">MIÉRCOLES <b>19 a 20:30</b></h1>
+      <p>por Super 107.5</p>
+      <nav>
+        <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/marca.md">marca.md</a>
+        <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/temas/t11/tema.css">tema.css</a>
+        <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv.svg">logo-lqv.svg</a>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="titulo"><span class="mono">01</span>Datos básicos</h2>
+    <div class="datos">
+      <div class="dato"><div class="mono">Nombre</div><div class="titulo">Lo Que Viene</div></div>
+      <div class="dato"><div class="mono">Sigla</div><div class="titulo">LQV</div></div>
+      <div class="dato"><div class="mono">Emisora</div><div class="titulo">Super 107.5</div></div>
+      <div class="dato"><div class="mono">Horario</div><div class="titulo">Miércoles 19 a 20:30</div></div>
+      <div class="dato"><div class="mono">Temporada</div><div class="titulo" style="color:var(--neon-magenta);text-shadow:var(--brillo-temporada)">T11</div></div>
+    </div>
+    <h3 class="mono">Nombre y firma</h3>
+    <ul>
+      <li>Nombre completo: <b>Lo Que Viene</b>. En el logo y en las piezas va en mayúsculas: LO QUE VIENE. Forma corta: <b>LQV</b>.</li>
+      <li>Firma del logo: <b>LO QUE VIENE</b> | FM107.5. El nombre va en negrita y "| FM107.5" en peso regular, con 85 % de opacidad.</li>
+      <li>Para nombrar la emisora en textos: <b>Super 107.5</b>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">02</span>Logo</h2>
+    <p><code>lqv/temas/t11/logo-lqv.svg</code> · 534 × 288 · blanco sobre el fondo azul noche del tema.</p>
+    <ul>
+      <li>Monograma "LQ&gt;": una L y una Q dibujadas con varios trazos paralelos, más una flecha que apunta a la derecha. Abajo, la bajada "LO QUE VIENE | FM107.5".</li>
+      <li>En las piezas lleva un brillo suave blanco y cian (<code>--logo-brillo</code>).</li>
+      <li>Va siempre arriba a la izquierda, apoyado en el margen seguro. Ningún texto ni foto queda debajo del logo.</li>
+      <li>El logo anterior con el sello "10 años" no se usa.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">03</span>Color</h2>
+    <h3 class="mono">Fondo</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chipc" style="background:#050817"></div><div class="meta">Fondo exterior<code>#050817</code></div></div>
+      <div class="sw"><div class="chipc" style="background:#0A1130"></div><div class="meta">Fondo medio<code>#0A1130</code></div></div>
+      <div class="sw"><div class="chipc" style="background:#0D1840"></div><div class="meta">Fondo centro<code>#0D1840</code></div></div>
+      <div class="sw"><div class="chipc" style="background:#02050F"></div><div class="meta">Bordes<code>#02050F</code></div></div>
+    </div>
+    <h3 class="mono">Neones</h3>
+    <div class="swatches">
+      <div class="sw neon"><div class="chipc" style="background:#00E5FF"></div><div class="meta">Cian · "PROGRAMA", "| T11"<code>#00E5FF</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#FF2BD6"></div><div class="meta">Magenta · "T11", "NOTA A"<code>#FF2BD6</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#FFE14A"></div><div class="meta">Amarillo · fecha, "NOTA 01"<code>#FFE14A</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#FF7A1A"></div><div class="meta">Naranja · fondo<code>#FF7A1A</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#FF3A4A"></div><div class="meta">Rojo · fondo<code>#FF3A4A</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#B6FF3C"></div><div class="meta">Lima · reserva<code>#B6FF3C</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#B066FF"></div><div class="meta">Violeta · línea de luz<code>#B066FF</code></div></div>
+    </div>
+    <h3 class="mono">Texto y Spotify</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chipc" style="background:#FFFFFF"></div><div class="meta">Texto<code>#FFFFFF</code></div></div>
+      <div class="sw"><div class="chipc" style="background:rgba(255,255,255,.88)"></div><div class="meta">Descripción<code>rgba(255,255,255,.88)</code></div></div>
+      <div class="sw"><div class="chipc" style="background:rgba(255,255,255,.55)"></div><div class="meta">Tenue<code>rgba(255,255,255,.55)</code></div></div>
+      <div class="sw neon"><div class="chipc" style="background:#1ED760"></div><div class="meta">Spotify · botón<code>#1ED760</code></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">04</span>Tipografía</h2>
+    <div class="fuentes">
+      <div class="fuente"><div class="mono">Títulos · --fuente-titulo</div><div class="muestra" style="font-family:var(--fuente-titulo)">CATARTE BY LEBLON</div><p>Bebas Neue 400. Títulos, número, día y fecha, temporada, botón.</p></div>
+      <div class="fuente"><div class="mono">Texto · --fuente-texto</div><div class="muestra" style="font-family:var(--fuente-texto);font-size:30px">Karina Romero nos cuenta todo lo que se viene.</div><p>Barlow Condensed 400. Descripciones de las notas.</p></div>
+      <div class="fuente"><div class="mono">Etiquetas · --fuente-mono</div><div class="muestra mono" style="font-size:22px;color:var(--neon-yellow);text-shadow:var(--brillo-chip)">Nota 01</div><p>IBM Plex Mono 400, en mayúsculas y con letras espaciadas. Rótulos chicos.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">05</span>Estilo de las piezas</h2>
+    <p>Neón de estudio nocturno: fondo azul noche con íconos neón (instrumentos, micrófonos, vinilos, comida, bebida, máscaras), láseres y destellos. Abajo hay un "piso" oscuro con una línea de luz cian y violeta. Los textos llevan un brillo suave y los acentos de color brillan como neón.</p>
+    <div class="tabla-scroll">
+      <table class="tabla">
+        <tr><th>Pieza</th><th>Tamaño</th><th>Plantilla</th><th>Margen seguro</th></tr>
+        <tr><td>Placa de nota</td><td>1080 × 1350</td><td><code>placa-nota.html</code></td><td>64 px a los costados · 48 px arriba y abajo</td></tr>
+        <tr><td>Portada de carrusel</td><td>1080 × 1350</td><td><code>portada-carrusel-1..4.html</code></td><td>64 / 48 px</td></tr>
+        <tr><td>Portada web / YouTube</td><td>1920 × 1080</td><td><code>portada-web-1..4.html</code></td><td>96 px a los costados · 54 px arriba y abajo</td></tr>
+        <tr><td>Portada de nota en piso</td><td>1920 × 1080</td><td><code>portada-piso.html</code></td><td>96 / 54 px</td></tr>
+      </table>
+    </div>
+    <h3 class="mono">Ejemplos T11 · programa 35</h3>
+    <div class="ejemplos">
+      <figure class="ej"><div class="vista v"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/placa-nota-1.html" title="Placa de nota" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/placa-nota-1.html">Placa de nota</a></figcaption></figure>
+      <figure class="ej"><div class="vista v"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-carrusel-2.html" title="Portada de carrusel" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-carrusel-2.html">Portada de carrusel</a></figcaption></figure>
+      <figure class="ej"><div class="vista h"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-web-2.html" title="Portada web" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-web-2.html">Portada web / YouTube</a></figcaption></figure>
+      <figure class="ej"><div class="vista h"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-piso.html" title="Portada en piso" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-piso.html">Portada de nota en piso</a></figcaption></figure>
+    </div>
+    <h3 class="mono">Elementos que se repiten</h3>
+    <ul>
+      <li>Día y fecha en Bebas Neue, con el día en blanco y la fecha en amarillo neón: "MIÉRCOLES 14/10".</li>
+      <li>"PROGRAMA" en mono cian, el número enorme con dos dígitos y "T11" en magenta con la palabra "temporada" en tono tenue.</li>
+      <li>Fotos recortadas con esquinas de 14 px (10 px en la placa) y sin borde.</li>
+      <li>Chip "NOTA 01" en mono amarillo, sobre una cápsula oscura con desenfoque.</li>
+      <li>Botón "escuchanos en Spotify" con borde y brillo verde.</li>
+      <li>Los textos largos se achican solos para entrar en su espacio. No se cortan.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">06</span>Voz y textos</h2>
+    <ul>
+      <li>Español rioplatense con voseo: "escuchanos", no "escúchanos".</li>
+      <li>Día y título en mayúsculas. Fecha en formato <code>DD/MM</code>. Número de programa con dos dígitos ("07", "35").</li>
+      <li>Descripción de nota: de 1 a 3 oraciones en tercera persona, presentando a la persona invitada y el tema.</li>
+      <li>Llamado a la acción fijo: "escuchanos en Spotify".</li>
+    </ul>
+  </section>
+
+  <footer>
+    Versión para IA: <a href="https://agucorrea.github.io/plantillas/lqv/marca.md">marca.md</a> ·
+    <a href="https://agucorrea.github.io/plantillas/">Todas las marcas</a>
+  </footer>
+</div>
+<script>
+  // Escala cada vista previa al ancho de su tarjeta.
+  function escalar() {
+    document.querySelectorAll('.vista').forEach(function (v) {
+      var f = v.querySelector('iframe');
+      f.style.transform = 'scale(' + (v.clientWidth / f.offsetWidth) + ')';
+    });
+  }
+  window.addEventListener('resize', escalar);
+  escalar();
+</script>
+</body>
+</html>

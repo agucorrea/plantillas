@@ -1,0 +1,7 @@
+# Plantillas de marca
+
+> Guías de marca en Markdown para asistentes de IA. Cada marca tiene su archivo marca.md con nombre, logo, colores, tipografía y voz.
+
+## Marcas
+
+- [Lo Que Viene](https://agucorrea.github.io/plantillas/lqv/marca.md): programa de radio, miércoles de 19 a 20:30 hs por Super 107.5
