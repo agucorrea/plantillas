@@ -75,6 +75,31 @@
   .vista.v iframe { width: 1080px; height: 1350px; }
   .vista.h iframe { width: 1920px; height: 1080px; }
 
+  .pngs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 14px 0; }
+  .png { border-radius: 10px; padding: 18px; display: grid; place-items: center; }
+  .png img { width: 100%; max-width: 260px; height: auto; }
+  .png.oscuro { background: #050817; border: 1px solid rgba(255,255,255,.1); }
+  .png.claro { background: repeating-conic-gradient(#ddd 0 25%, #fff 0 50%) 0 0 / 16px 16px; }
+  .pngs figcaption { margin-top: 6px; font-size: 15px; color: var(--texto-tenue); }
+
+  .super-firma { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .super-firma img { width: 160px; height: auto; }
+  .super-firma > div { flex: 1 1 260px; }
+
+  .zonas { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin: 10px 0 16px; }
+  .lienzo { position: relative; background: var(--fondo); border: 1px solid rgba(255,255,255,.15); border-radius: 6px; overflow: hidden; }
+  .lienzo.v { width: 160px; aspect-ratio: 1080 / 1350; }
+  .lienzo.h { width: 284px; aspect-ratio: 1920 / 1080; }
+  .z { position: absolute; display: grid; place-items: center; font-family: var(--fuente-mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; border: 1.5px dashed; }
+  .z-lqv { top: 0; left: 0; color: var(--neon-cyan); background: rgba(0,229,255,.08); }
+  .z-super { left: 0; right: 0; bottom: 0; color: var(--neon-magenta); background: rgba(255,43,214,.08); }
+  .lienzo.v .z-lqv { width: 33%; height: 16%; }
+  .lienzo.v .z-super { height: 15%; }
+  .lienzo.h .z-lqv { width: 27%; height: 22%; }
+  .lienzo.h .z-super { height: 15%; }
+  .fmt { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10px; color: var(--texto-tenue); }
+  .prompt { white-space: pre-wrap; font-family: var(--fuente-mono); font-size: 13px; line-height: 1.5; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 14px; color: var(--texto); overflow-x: auto; }
+
   footer { margin-top: 36px; text-align: center; color: var(--texto-tenue); font-size: 16px; }
 </style>
 </head>
@@ -90,6 +115,7 @@
         <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/marca.md">marca.md</a>
         <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/temas/t11/tema.css">tema.css</a>
         <a class="chip mono" href="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv.svg">logo-lqv.svg</a>
+        <a class="chip mono" href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg">logo Super</a>
       </nav>
     </div>
   </header>
@@ -114,6 +140,10 @@
   <section>
     <h2 class="titulo"><span class="mono">02</span>Logo</h2>
     <p><code>lqv/temas/t11/logo-lqv.svg</code> · 534 × 288 · blanco sobre el fondo azul noche del tema.</p>
+    <div class="pngs">
+      <figure><div class="png oscuro"><img src="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv-blanco.png" alt="Logo LQV blanco" loading="lazy"></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv-blanco.png">logo-lqv-blanco.png</a> · 1000 × 539 · fondos oscuros</figcaption></figure>
+      <figure><div class="png claro"><img src="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv-negro.png" alt="Logo LQV negro" loading="lazy"></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/temas/t11/logo-lqv-negro.png">logo-lqv-negro.png</a> · 1000 × 539 · fondos claros</figcaption></figure>
+    </div>
     <ul>
       <li>Monograma "LQ&gt;": una L y una Q dibujadas con varios trazos paralelos, más una flecha que apunta a la derecha. Abajo, la bajada "LO QUE VIENE | FM107.5".</li>
       <li>En las piezas lleva un brillo suave blanco y cian (<code>--logo-brillo</code>).</li>
@@ -190,7 +220,60 @@
   </section>
 
   <section>
-    <h2 class="titulo"><span class="mono">06</span>Voz y textos</h2>
+    <h2 class="titulo"><span class="mono">06</span>Logo de la Super</h2>
+    <div class="super-firma">
+      <a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg"><img src="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg" alt="Super 107.5, logo compacto" width="180" height="109"></a>
+      <div>
+        <p>Lo Que Viene sale por Super 107.5, así que <b>toda pieza de LQV lleva también el logo de la Super</b>, en su versión compacta, como firma. Va abajo, más chico que el logo de LQV, y respetando los márgenes seguros.</p>
+        <p><a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg">logo-super-compacto.svg</a> · <a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.png">.png</a> · <a href="https://agucorrea.github.io/plantillas/super/">guía de la Super</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">07</span>Logos en imágenes generadas con IA</h2>
+    <p><b>Regla: la IA nunca dibuja logos ni textos.</b> La imagen generada es solo el fondo. Se dejan dos zonas libres y después se superponen los archivos reales.</p>
+    <div class="zonas">
+      <div class="lienzo v"><div class="z z-lqv">LQV</div><div class="z z-super">Super</div><span class="fmt mono">1080 × 1350</span></div>
+      <div class="lienzo h"><div class="z z-lqv">LQV</div><div class="z z-super">Super</div><span class="fmt mono">1920 × 1080</span></div>
+    </div>
+    <ul>
+      <li><b>Generar el fondo</b> con el prompt base, dejando vacías la zona de arriba a la izquierda (logo de LQV) y una franja abajo (logo de la Super).</li>
+      <li><b>Superponer los archivos reales</b>: <code>logo-lqv.svg</code> o <code>logo-lqv-blanco.png</code> arriba a la izquierda, y <code>logo-super-compacto.svg</code> o <code>.png</code> abajo.</li>
+      <li><b>Agregar los textos</b> con las fuentes del tema, nunca dentro de la imagen generada.</li>
+    </ul>
+    <div class="tabla-scroll">
+      <table class="tabla">
+        <tr><th>Formato</th><th>Arriba a la izquierda (LQV)</th><th>Abajo (Super)</th></tr>
+        <tr><td>1080 × 1350</td><td>360 × 220 px (33 % × 16 %)</td><td>Franja de 200 px (15 %)</td></tr>
+        <tr><td>1080 × 1080</td><td>360 × 200 px (33 % × 18 %)</td><td>Franja de 160 px (15 %)</td></tr>
+        <tr><td>1080 × 1920</td><td>360 × 260 px (33 % × 14 %)</td><td>Franja de 260 px (14 %)</td></tr>
+        <tr><td>1920 × 1080</td><td>520 × 240 px (27 % × 22 %)</td><td>Franja de 160 px (15 %)</td></tr>
+      </table>
+    </div>
+    <h3 class="mono">Prompt base</h3>
+    <p>Reemplazar <code>{formato}</code> y <code>{tema}</code>.</p>
+<pre class="prompt">Background image for a radio show social media post, {formato} format.
+Style: neon night-time radio studio. Deep navy blue background with a radial
+gradient (#0D1840 center fading to #050817 and #02050F at the edges), subtle
+film grain. Glowing neon line icons related to {tema} (for example microphones,
+headphones, vinyl records, music notes, food and drinks), in cyan #00E5FF,
+magenta #FF2BD6, yellow #FFE14A and violet #B066FF, with soft lasers and bokeh.
+Dark "studio floor" at the bottom with a thin cyan-to-violet light line.
+
+Composition, mandatory: leave the TOP-LEFT corner (about one third of the width
+and the top 16% of the height) completely empty, dark and plain. Leave a band
+across the BOTTOM 15% of the height empty, dark and plain. No icons, lights or
+details in those two areas.
+
+Do not include any text, letters, numbers, words, logos, symbols, signatures or
+watermarks anywhere in the image.</pre>
+    <p>Prompt negativo: <code>text, letters, typography, words, numbers, logo, brand, watermark, signature, icons in the top-left corner, details in the bottom band</code></p>
+    <p>Después de generar, revisar que las dos zonas estén limpias y que no haya letras inventadas. Si las hay, regenerar. Nunca tapar texto inventado con el logo.</p>
+  </section>
+
+  <section>
+    <h2 class="titulo"><span class="mono">08</span>Voz y textos</h2>
     <ul>
       <li>Español rioplatense con voseo: "escuchanos", no "escúchanos".</li>
       <li>Día y título en mayúsculas. Fecha en formato <code>DD/MM</code>. Número de programa con dos dígitos ("07", "35").</li>

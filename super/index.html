@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super 107.5 — Guía de marca</title>
+<meta name="description" content="Guía de marca de Super 107.5, Radio con vos. Rosario.">
+<link rel="alternate" type="text/markdown" href="https://agucorrea.github.io/plantillas/super/marca.md">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --azul: #0087f7; --naranja: #ff6600;
+    --ink: #0b0b0f; --ink-2: #2a2c33; --muted: #646875; --faint: #a0a3ab; --line: #e6e7eb;
+    --bg: #ffffff; --surface: #f4f5f7; --surface-2: #e9eaee; --card: #ffffff;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.06);
+    --display: "Archivo", "Arial Black", system-ui, sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #f4f5f7; --ink-2: #d5d7dd; --muted: #a0a3ab; --line: #2a2c33; --bg: #0b0b0f; --surface: #17181d; --surface-2: #202128; --card: #17181d; --shadow: none; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  a { color: var(--azul); }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .88em; }
+
+  .hero { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 28px; }
+  .hero-top { background: linear-gradient(135deg, #0087f7 0%, #2f6fd6 55%, #1d3f8f 100%); padding: 36px 24px; display: flex; justify-content: center; }
+  .hero-top img { width: min(520px, 100%); height: auto; }
+  .hero-bot { background: #0b0b0f; color: #fff; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+  .pill-live { display: inline-flex; align-items: center; gap: 8px; background: var(--naranja); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+  .pill-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; }
+  .hero-bot h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(26px, 5vw, 36px); line-height: 1.1; }
+  .hero-bot p { margin: 0; color: rgba(255,255,255,.75); }
+  .hero-bot nav { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; border-radius: 999px; background: #fff; color: #0b0b0f; font-weight: 600; font-size: 14px; text-decoration: none; }
+  .btn::before { content: "▶"; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--azul); color: #fff; font-size: 10px; }
+
+  section { background: var(--card); border-radius: 14px; padding: 24px; margin: 20px 0; box-shadow: var(--shadow); }
+  h2 { margin: 0 0 14px; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 24px; display: flex; align-items: center; gap: 10px; }
+  h2 .num { font-family: var(--body); font-weight: 700; font-size: 13px; color: var(--azul); background: rgba(0,135,247,.09); border-radius: 8px; padding: 3px 8px; }
+  h3 { margin: 22px 0 10px; font-family: var(--display); font-weight: 700; font-size: 16px; text-transform: uppercase; color: var(--ink-2); }
+  p, li { color: var(--ink-2); }
+  ul { padding-left: 20px; margin: 6px 0; }
+  li { margin: 4px 0; }
+
+  .datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .dato { background: var(--surface); border-radius: 8px; padding: 12px 14px; }
+  .dato small { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .dato b { font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--ink); }
+
+  .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .logo-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .logo-card .muestra { display: grid; place-items: center; padding: 24px; min-height: 170px; background: repeating-conic-gradient(var(--surface) 0 25%, var(--card) 0 50%) 0 0 / 18px 18px; }
+  .logo-card .muestra img { max-width: 100%; max-height: 120px; }
+  .logo-card .info { padding: 12px 14px; font-size: 14px; }
+  .logo-card .info b { font-family: var(--display); font-weight: 800; font-size: 17px; text-transform: uppercase; display: block; color: var(--ink); }
+  .logo-card .info .uso { color: var(--ink-2); margin: 4px 0 8px; }
+  .logo-card .info a { margin-right: 12px; font-weight: 600; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .sw { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .sw .chip { height: 60px; }
+  .sw .meta { padding: 8px 10px; font-size: 13px; line-height: 1.35; color: var(--ink-2); }
+  .sw .meta b { display: block; color: var(--ink); font-size: 14px; }
+
+  .fuentes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .fuente { background: var(--surface); border-radius: 8px; padding: 16px; }
+  .fuente small { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .fuente .m { margin: 6px 0; color: var(--ink); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: rgba(0,135,247,.09); color: var(--azul); font-weight: 700; border-radius: 999px; padding: 6px 12px; }
+  .ejemplo { background: var(--surface); border-left: 4px solid var(--azul); border-radius: 8px; padding: 10px 14px; margin: 8px 0; color: var(--ink); }
+
+  footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-top"><img src="https://agucorrea.github.io/plantillas/super/logos/logo-super-horizontal.svg" alt="Super 107.5 — Radio con vos" width="517" height="135"></div>
+    <div class="hero-bot">
+      <span class="pill-live">Guía de marca</span>
+      <div><h1>Super 107.5 · Radio con vos</h1><p>FM 107.5 · Rosario · #Super1075 #Rosario</p></div>
+      <nav>
+        <a class="btn" href="https://agucorrea.github.io/plantillas/super/marca.md">marca.md</a>
+        <a class="btn" href="https://www.super1075.com/">super1075.com</a>
+      </nav>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span>Datos básicos</h2>
+    <div class="datos">
+      <div class="dato"><small>Nombre</small><b>Super 107.5</b></div>
+      <div class="dato"><small>Frecuencia</small><b>FM 107.5</b></div>
+      <div class="dato"><small>Ciudad</small><b>Rosario</b></div>
+      <div class="dato"><small>Eslogan</small><b>Radio con vos</b></div>
+      <div class="dato"><small>Sitio</small><b>super1075.com</b></div>
+    </div>
+    <h3>Nombre y firma</h3>
+    <ul>
+      <li>Se escribe <b>Super 107.5</b>. En el logo va en mayúsculas: SUPER 107.5. Forma corta en textos: <b>la Super</b>.</li>
+      <li>Eslogan: <b>Radio con vos</b>. En el logo va en mayúsculas: RADIO CON VOS.</li>
+      <li>Hashtags: siempre <b>#Super1075 #Rosario</b>, en ese orden.</li>
+      <li>No usar: "Super 1075" en textos (solo en el hashtag y en el dominio), "Súper", "Radio Super".</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Logo</h2>
+    <p>Hay tres versiones. Cada una está en SVG (vectorial, la preferida) y en PNG transparente de 1000 px de ancho.</p>
+    <div class="logos">
+      <div class="logo-card">
+        <div class="muestra"><img src="https://agucorrea.github.io/plantillas/super/logos/logo-super-horizontal.svg" alt="Logo horizontal"></div>
+        <div class="info"><b>Horizontal</b><div class="uso">Piezas anchas: portadas web y de YouTube (16:9), banners, encabezados y zócalos.</div>
+          <a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-horizontal.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-horizontal.png">PNG</a></div>
+      </div>
+      <div class="logo-card">
+        <div class="muestra"><img src="https://agucorrea.github.io/plantillas/super/logos/logo-super-vertical.svg" alt="Logo vertical"></div>
+        <div class="info"><b>Vertical</b><div class="uso">Piezas cuadradas y verticales: posts 1:1, placas 4:5, historias y reels 9:16.</div>
+          <a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-vertical.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-vertical.png">PNG</a></div>
+      </div>
+      <div class="logo-card">
+        <div class="muestra"><img src="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg" alt="Logo compacto"></div>
+        <div class="info"><b>Compacto</b><div class="uso">Espacios chicos o como firma: avatares, favicons, marcas de agua y la firma en piezas de programas como Lo Que Viene.</div>
+          <a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/super/logos/logo-super-compacto.png">PNG</a></div>
+      </div>
+    </div>
+    <h3>Cómo está construido</h3>
+    <ul>
+      <li>Tiene letras gruesas en cursiva, con "SUPER" y "RADIO CON VOS" en blanco hueso y "107.5" en azul.</li>
+      <li>Todo va con un contorno negro grueso y un borde exterior claro, como un sticker. Por eso funciona sobre fondos claros, oscuros y fotos.</li>
+      <li>En "RADIO CON VOS", la O de "CON" es un botón de play y la O de "VOS" es un micrófono.</li>
+    </ul>
+    <h3>Reglas de uso</h3>
+    <ul>
+      <li>Usar los archivos tal cual. No redibujar, recolorear, deformar, rotar ni quitar el contorno.</li>
+      <li>Dejar alrededor un margen libre de al menos la mitad del alto de "SUPER".</li>
+      <li>Si el horizontal queda por debajo de unos 300 px de ancho, usar el compacto.</li>
+      <li>Las IA de imágenes nunca dibujan el logo. Se deja el espacio libre y después se superpone el archivo real.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>Color</h2>
+    <h3>Marca</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0087F7"></div><div class="meta"><b>Azul Super</b><code>#0087F7</code> · principal</div></div>
+      <div class="sw"><div class="chip" style="background:#0383F2"></div><div class="meta"><b>Azul logo</b><code>#0383F2</code> · "107.5"</div></div>
+      <div class="sw"><div class="chip" style="background:#FF6600"></div><div class="meta"><b>Naranja en vivo</b><code>#FF6600</code> · solo "en vivo"</div></div>
+      <div class="sw"><div class="chip" style="background:#0B0B0F"></div><div class="meta"><b>Negro</b><code>#0B0B0F</code> · texto y fondos oscuros</div></div>
+      <div class="sw"><div class="chip" style="background:#030404"></div><div class="meta"><b>Negro logo</b><code>#030404</code> · contorno</div></div>
+      <div class="sw"><div class="chip" style="background:#F1F1F0"></div><div class="meta"><b>Blanco hueso</b><code>#F1F1F0</code> · letras del logo</div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><b>Blanco</b><code>#FFFFFF</code> · fondo</div></div>
+    </div>
+    <h3>Neutros de la interfaz</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#2A2C33"></div><div class="meta"><code>#2A2C33</code> · texto fuerte</div></div>
+      <div class="sw"><div class="chip" style="background:#646875"></div><div class="meta"><code>#646875</code> · secundario</div></div>
+      <div class="sw"><div class="chip" style="background:#A0A3AB"></div><div class="meta"><code>#A0A3AB</code> · tenue</div></div>
+      <div class="sw"><div class="chip" style="background:#E6E7EB"></div><div class="meta"><code>#E6E7EB</code> · líneas</div></div>
+      <div class="sw"><div class="chip" style="background:#F4F5F7"></div><div class="meta"><code>#F4F5F7</code> · superficie</div></div>
+      <div class="sw"><div class="chip" style="background:#17181D"></div><div class="meta"><code>#17181D</code> · tarjeta oscura</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>Tipografía</h2>
+    <div class="fuentes">
+      <div class="fuente"><small>Display · Archivo 800 / 900</small><div class="m" style="font-family:var(--display);font-weight:900;font-size:34px;text-transform:uppercase;line-height:1.05">Ahora y después</div><p>Títulos y secciones en mayúsculas, nombre del programa al aire.</p></div>
+      <div class="fuente"><small>Texto · Inter 400–700</small><div class="m" style="font-size:20px">Escuchanos en vivo por la 107.5 y en super1075.com.</div><p>Textos, horarios, botones, datos.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>Estilo</h2>
+    <ul>
+      <li>La interfaz es limpia, con fondo blanco o gris muy claro y modo oscuro en negro <code>#0B0B0F</code>.</li>
+      <li>Las tarjetas tienen esquinas de 14 px (8 px en las chicas) y sombras suaves.</li>
+      <li>La tarjeta "al aire" tiene un degradado azul arriba y un bloque oscuro abajo, con el nombre del programa en Archivo blanco. Este encabezado la imita.</li>
+      <li>Los botones son píldoras con un círculo de play. La etiqueta <span class="pill-live" style="font-size:11px;padding:2px 10px">En vivo</span> es una píldora naranja con un punto.</li>
+      <li>Hay iconografía de ondas de audio junto a los títulos de sección.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span>Voz y tono</h2>
+    <p>Es una radio musical y cercana de Rosario.</p>
+    <ul>
+      <li>Español rioplatense con voseo: "escuchanos", "sumate", "contanos". Es una radio que habla <i>con</i> vos.</li>
+      <li>Tono cálido, de barrio y de ciudad, con energía musical. Cercano pero no chabacano.</li>
+      <li>Nombrar a Rosario y sus lugares con orgullo local.</li>
+      <li>Frases cortas. Se pueden usar uno o dos emojis al inicio de los títulos de notas, como hace el sitio.</li>
+    </ul>
+    <h3>Hashtags</h3>
+    <div class="tags"><span class="tag">#Super1075</span><span class="tag">#Rosario</span></div>
+    <h3>Ejemplos</h3>
+    <div class="ejemplo">Escuchanos en vivo por la 107.5 y en super1075.com.</div>
+    <div class="ejemplo">La Super, Radio con vos. #Super1075 #Rosario</div>
+  </section>
+
+  <footer>
+    Versión para IA: <a href="https://agucorrea.github.io/plantillas/super/marca.md">marca.md</a> ·
+    <a href="https://agucorrea.github.io/plantillas/">Todas las marcas</a>
+  </footer>
+</div>
+</body>
+</html>

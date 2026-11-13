@@ -5,3 +5,4 @@
 ## Marcas
 
 - [Lo Que Viene](https://agucorrea.github.io/plantillas/lqv/marca.md): programa de radio, miércoles de 19 a 20:30 hs por Super 107.5
+- [Super 107.5](https://agucorrea.github.io/plantillas/super/marca.md): radio FM de Rosario, "Radio con vos". Logos en horizontal, vertical y compacto, en SVG y PNG.
