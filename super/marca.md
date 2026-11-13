@@ -75,8 +75,7 @@ Los valores del logo salen de los SVG. Los de la interfaz salen de las variables
 
 | Rol | HEX | Fuente | Uso |
 |---|---|---|---|
-| Azul Super | `#0087F7` | sitio (`--primary`) | Color principal: botones, enlaces, acentos |
-| Azul logo | `#0383F2` | logos | "107.5" en el logo. Es el mismo azul que el del sitio y no hace falta distinguirlos en piezas. |
+| Azul Super | `#0383F2` | logos | Color principal: "107.5" en el logo, botones, enlaces, acentos. Es el valor exacto del logo. El sitio usa `#0087F7`, que es casi igual, pero en las piezas va `#0383F2`. |
 | Naranja en vivo | `#FF6600` | sitio (`--secondary`, `--live`) | Solo para "AL AIRE" / "EN VIVO" |
 | Negro | `#0B0B0F` | sitio (`--ink`, `--dark`) | Textos y fondos oscuros |
 | Negro logo | `#030404` | logos | Contorno del logo |
