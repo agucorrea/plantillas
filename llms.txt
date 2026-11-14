@@ -6,3 +6,5 @@
 
 - [Lo Que Viene](https://agucorrea.github.io/plantillas/lqv/marca.md): programa de radio, miércoles de 19 a 20:30 hs por Super 107.5
 - [Super 107.5](https://agucorrea.github.io/plantillas/super/marca.md): radio FM de Rosario, "Radio con vos". Logos en horizontal, vertical y compacto, en SVG y PNG.
+- [Traeme La Carta](https://agucorrea.github.io/plantillas/traemelacarta/marca.md): carta digital con QR para bares y restaurantes. Guía institucional.
+- [Traeme La Carta · Campaña de lanzamiento](https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/campana.md): "Sacá a tu bar del pasado". Hereda la guía institucional y documenta solo lo que cambia.

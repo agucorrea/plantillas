@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traeme La Carta — Guía de marca</title>
+<meta name="description" content="Guía de marca de Traeme La Carta: carta digital con QR para bares y restaurantes.">
+<link rel="alternate" type="text/markdown" href="https://agucorrea.github.io/plantillas/traemelacarta/marca.md">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<style>
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --ink-2: #16301f; --dark: #13221a; --text: #3d4a43; --muted: #6b7a72; --line: #e4eae6;
+    --bg: #ffffff; --bg-alt: #f5f8f6; --card: #ffffff;
+    --shadow: 0 10px 30px -10px rgba(16,40,28,.18), 0 4px 10px -4px rgba(16,40,28,.08);
+    --display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --text: #c9d4ce; --muted: #93a39a; --line: #23392d; --bg: #0b1510; --bg-alt: #0e1f17; --card: #13221a; --dark: #eef5f0; --shadow: none; --verde-suave: #16301f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg-alt); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  a { color: var(--verde-osc); }
+  @media (prefers-color-scheme: dark) { a { color: var(--verde); } }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .86em; }
+  .aviso { margin: 0 0 16px; padding: 12px 16px; border-radius: 12px; background: #fff7e0; border: 1px solid #f3d27a; color: #3d4a43; }
+
+  .hero { border-radius: 18px; overflow: hidden; color: #fff; padding: 40px 24px; margin-bottom: 28px; text-align: center;
+    background: radial-gradient(900px 500px at 85% -10%, #1f4a33 0%, transparent 60%), linear-gradient(180deg, #0e1f17, #13221a); }
+  .hero img { width: min(420px, 90%); height: auto; }
+  .pill { display: inline-block; margin: 20px 0 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(46,204,113,.35); background: rgba(46,204,113,.12); color: #bff0d3; font-size: 14px; font-weight: 500; }
+  .hero h1 { margin: 6px 0; font-family: var(--display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.1; }
+  .hero p { margin: 0 auto; max-width: 560px; color: rgba(255,255,255,.75); }
+  .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn.pri { background: var(--verde); color: #0e1f17; }
+  .btn.sec { border: 1px solid rgba(255,255,255,.3); color: #fff; }
+
+  section { background: var(--card); border-radius: 18px; padding: 24px; margin: 20px 0; box-shadow: var(--shadow); }
+  h2 { margin: 0 0 14px; font-family: var(--display); font-weight: 800; color: var(--dark); font-size: 26px; display: flex; gap: 10px; align-items: center; }
+  h2 .num { font-family: var(--body); font-size: 12px; font-weight: 700; color: var(--verde-osc); background: var(--verde-suave); padding: 3px 9px; border-radius: 999px; }
+  h3 { margin: 22px 0 10px; font-family: var(--display); font-weight: 700; color: var(--dark); font-size: 17px; }
+  ul, ol { padding-left: 22px; margin: 6px 0; }
+  li { margin: 4px 0; }
+  b { color: var(--dark); }
+
+  .datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .dato { background: var(--bg-alt); border-radius: 12px; padding: 12px 14px; }
+  .dato small { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .dato span { font-family: var(--display); font-weight: 700; color: var(--dark); }
+
+  .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .logo-card { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .logo-card .muestra { display: grid; place-items: center; height: 180px; padding: 20px; }
+  .logo-card .muestra img { max-width: 100%; max-height: 140px; }
+  .claro { background: #ffffff; } .oscuro { background: #0e1f17; } .verde { background: #2ecc71; }
+  .logo-card .info { padding: 12px 14px; font-size: 14px; }
+  .logo-card .info b { display: block; font-family: var(--display); font-size: 15px; }
+  .logo-card .info a { margin-right: 10px; font-weight: 600; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .sw { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .sw .chip { height: 60px; }
+  .sw .meta { padding: 8px 10px; font-size: 13px; line-height: 1.35; }
+  .sw .meta b { display: block; font-size: 14px; }
+
+  .fuentes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .fuente { background: var(--bg-alt); border-radius: 12px; padding: 16px; }
+  .fuente small { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .fuente .m { margin: 6px 0; color: var(--dark); }
+
+  .tabla-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+
+  .ejemplo { background: var(--verde-suave); border-left: 4px solid var(--verde); border-radius: 10px; padding: 10px 14px; margin: 8px 0; color: var(--dark); }
+  .prompt { white-space: pre-wrap; font-family: ui-monospace, Consolas, monospace; font-size: 13px; line-height: 1.5; background: #0e1f17; color: #e9f9f0; border-radius: 12px; padding: 14px; overflow-x: auto; }
+
+  .campana { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; background: var(--bg-alt); border-radius: 14px; padding: 14px; text-decoration: none; color: inherit; }
+  .campana img { width: 90px; border-radius: 10px; }
+  .campana b { font-family: var(--display); font-size: 18px; display: block; }
+
+  footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="aviso"><b>Usá solo la información de esta guía, no busques imágenes en internet.</b></p>
+
+  <div class="hero">
+    <img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal-blanco.svg" alt="Traeme La Carta" width="973" height="266">
+    <div><span class="pill">Guía de marca · Institucional</span></div>
+    <h1>Tu carta digital, en minutos</h1>
+    <p>Carta con QR para bares, restaurantes, cafés y deliveries, administrable desde el celular. Los clientes no necesitan app.</p>
+    <div class="ctas">
+      <a class="btn pri" href="https://traemelacarta.online/registro">Probá 30 días gratis, sin tarjeta</a>
+      <a class="btn sec" href="https://traemelacarta.online/tlc-bar">Mirá una carta de ejemplo</a>
+      <a class="btn sec" href="https://agucorrea.github.io/plantillas/traemelacarta/marca.md">marca.md</a>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span>Datos básicos</h2>
+    <div class="datos">
+      <div class="dato"><small>Nombre</small><span>Traeme La Carta (TLC)</span></div>
+      <div class="dato"><small>Público</small><span>Locales gastronómicos de Argentina, foco en Rosario</span></div>
+      <div class="dato"><small>Sitio</small><span>traemelacarta.online</span></div>
+      <div class="dato"><small>Contacto</small><span>hola@traemelacarta.online</span></div>
+    </div>
+    <h3>Diferenciales</h3>
+    <ol>
+      <li><b>30 días gratis, sin tarjeta.</b></li>
+      <li><b>Cambios de precio al instante</b>, desde el celular.</li>
+      <li><b>QR listo para imprimir.</b></li>
+      <li><b>Sin apps para los clientes.</b></li>
+      <li><b>Menú distinto para Local y Delivery.</b></li>
+      <li><b>Promociones destacadas.</b></li>
+      <li><b>Multimoneda</b> (ARS, USD, EUR).</li>
+      <li><b>Importación desde Excel.</b></li>
+      <li><b>Importador con IA que lee la carta en PDF.</b> Es nuevo y todavía no aparece en la home.</li>
+    </ol>
+    <h3>Eje de contenido</h3>
+    <p class="ejemplo">El problema de reimprimir la carta o pegar etiqueta arriba de etiqueta cada vez que cambian los precios.</p>
+    <h3>Nombre</h3>
+    <ul>
+      <li>Se escribe <b>Traeme La Carta</b>. Forma corta: <b>TLC</b>. Dominio: <b>traemelacarta.online</b>.</li>
+      <li>No usar: "Tráeme" (con tilde), "TraemeLaCarta" o "Traemelacarta" en textos corridos.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Logos</h2>
+    <p>La mano de mozo con la bandeja va en verde <code>#2ECC71</code> y el nombre va en cursiva. Todos los archivos están en SVG y en PNG de 1000 px.</p>
+    <div class="logos">
+      <div class="logo-card"><div class="muestra claro"><img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical.svg" alt="Logo vertical"></div>
+        <div class="info"><b>Vertical</b>Fondos claros · posts, historias, reels<br><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical.png">PNG</a></div></div>
+      <div class="logo-card"><div class="muestra oscuro"><img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco.svg" alt="Logo vertical blanco"></div>
+        <div class="info"><b>Vertical blanco</b>Fondos oscuros<br><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco.png">PNG</a></div></div>
+      <div class="logo-card"><div class="muestra verde"><img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco-pleno.svg" alt="Logo vertical blanco pleno"></div>
+        <div class="info"><b>Vertical blanco pleno</b>Sobre el verde de la marca o sobre fotos<br><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco-pleno.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-vertical-blanco-pleno.png">PNG</a></div></div>
+      <div class="logo-card"><div class="muestra claro"><img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal.svg" alt="Logo horizontal"></div>
+        <div class="info"><b>Horizontal</b>Fondos claros · banners, encabezados, 16:9<br><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal.png">PNG</a></div></div>
+      <div class="logo-card"><div class="muestra oscuro"><img src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal-blanco.svg" alt="Logo horizontal blanco"></div>
+        <div class="info"><b>Horizontal blanco</b>Fondos oscuros<br><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal-blanco.svg">SVG</a><a href="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal-blanco.png">PNG</a></div></div>
+    </div>
+    <h3>Reglas de uso</h3>
+    <ul>
+      <li>Horizontal para piezas anchas y vertical para cuadradas y verticales. El blanco pleno va sobre el verde o sobre fotos.</li>
+      <li>Usar los archivos tal cual. No redibujar, recolorear, deformar ni separar la mano del nombre.</li>
+      <li>Dejar alrededor un margen libre de al menos el alto de la palabra "la".</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>Paleta</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#2ECC71"></div><div class="meta"><b>Verde TLC</b><code>#2ECC71</code> · marca, botones</div></div>
+      <div class="sw"><div class="chip" style="background:#1FA85A"></div><div class="meta"><b>Verde oscuro</b><code>#1FA85A</code> · texto verde, hover</div></div>
+      <div class="sw"><div class="chip" style="background:#E9F9F0"></div><div class="meta"><b>Verde suave</b><code>#E9F9F0</code> · fondos suaves</div></div>
+      <div class="sw"><div class="chip" style="background:#0E1F17"></div><div class="meta"><b>Tinta</b><code>#0E1F17</code> · títulos, hero</div></div>
+      <div class="sw"><div class="chip" style="background:#16301F"></div><div class="meta"><b>Tinta 2</b><code>#16301F</code> · fondo oscuro alt.</div></div>
+      <div class="sw"><div class="chip" style="background:#13221A"></div><div class="meta"><b>Oscuro</b><code>#13221A</code> · bloques oscuros</div></div>
+      <div class="sw"><div class="chip" style="background:#3D4A43"></div><div class="meta"><b>Texto</b><code>#3D4A43</code></div></div>
+      <div class="sw"><div class="chip" style="background:#6B7A72"></div><div class="meta"><b>Apagado</b><code>#6B7A72</code></div></div>
+      <div class="sw"><div class="chip" style="background:#E4EAE6"></div><div class="meta"><b>Línea</b><code>#E4EAE6</code></div></div>
+      <div class="sw"><div class="chip" style="background:#F5F8F6"></div><div class="meta"><b>Fondo alt.</b><code>#F5F8F6</code></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><b>Blanco</b><code>#FFFFFF</code></div></div>
+      <div class="sw"><div class="chip" style="background:#232321"></div><div class="meta"><b>Gris logo</b><code>#232321</code> · nombre del logo</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>Tipografías</h2>
+    <div class="fuentes">
+      <div class="fuente"><small>Display · Plus Jakarta Sans 700 / 800</small><div class="m" style="font-family:var(--display);font-weight:800;font-size:32px;line-height:1.1">Tu carta online en 3 pasos</div><p>Títulos.</p></div>
+      <div class="fuente"><small>Texto · Inter 400–700</small><div class="m" style="font-size:19px">Escanean y ven la carta en su celular, siempre con los precios del día.</div><p>Textos, botones, etiquetas.</p></div>
+    </div>
+    <p>Forma: radios de 18 px (12 px en los chicos), sombras suaves verdosas y etiquetas tipo píldora.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span>Estilo de imagen</h2>
+    <ul>
+      <li><b>Escenario</b>: café o bar moderno, con paredes y barras verdes, madera clara, banquetas verdes, plantas y ventanales con luz natural.</li>
+      <li><b>Personas</b>: clientes con la carta en el celular, un QR en la mesa, el mozo o el encargado en segundo plano, y el dueño actualizando precios.</li>
+      <li><b>Comida y bebida</b>: platos y tragos sobre una barra de madera, con luces cálidas.</li>
+      <li><b>Luz</b>: natural y suave, o cálida de noche. Colores reales, sin filtros fuertes.</li>
+      <li><b>No usar</b>: bancos de imágenes genéricos, pantallas con texto inventado ni locales o marcas de clientes reales.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span>Formatos de redes</h2>
+    <div class="tabla-scroll">
+      <table>
+        <tr><th>Formato</th><th>Tamaño</th><th>Logo</th><th>Zona segura</th></tr>
+        <tr><td>Post vertical</td><td>1080 × 1350</td><td>Vertical</td><td>64 px a los costados (la grilla recorta a 3:4)</td></tr>
+        <tr><td>Post cuadrado</td><td>1080 × 1080</td><td>Vertical</td><td>64 px</td></tr>
+        <tr><td>Historia y reel</td><td>1080 × 1920</td><td>Vertical</td><td>250 px arriba y 340 px abajo libres</td></tr>
+        <tr><td>Portada de video / link</td><td>1920 × 1080 · 1200 × 630</td><td>Horizontal</td><td>96 px a los costados</td></tr>
+      </table>
+    </div>
+    <p>Cada pieza lleva un solo CTA, y el link va en el texto del posteo o en la bio.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span>Voz, tono y reglas</h2>
+    <ul>
+      <li>Cercano y directo, con voseo: "Probá", "Cargá", "Imprimí", "Mirá".</li>
+      <li>Humor e ironía gastronómica: reírse del problema, nunca del cliente.</li>
+      <li>Sin tecnicismos ("SaaS", "plataforma", "dashboard") y sin promesas exageradas.</li>
+    </ul>
+    <div class="ejemplo">¿Otra vez etiqueta arriba de etiqueta? Cambiá el precio desde el celular y listo.</div>
+    <div class="ejemplo">Tu carta ya tiene más capas que una lasagna. Pasala a digital.</div>
+    <h3>CTA</h3>
+    <ul>
+      <li>Principal: <b>Probá 30 días gratis, sin tarjeta</b> → <a href="https://traemelacarta.online/registro">traemelacarta.online/registro</a></li>
+      <li>Secundario: <b>Mirá una carta de ejemplo</b> → <a href="https://traemelacarta.online/tlc-bar">traemelacarta.online/tlc-bar</a></li>
+    </ul>
+    <h3>Reglas</h3>
+    <ul>
+      <li><b>No mostrar precios en redes</b>, ni de planes ni de platos.</li>
+      <li><b>No mencionar clientes.</b> Los casos de éxito y testimonios van a tener su propia sección más adelante.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span>Logos en imágenes generadas con IA</h2>
+    <p><b>Regla: la IA nunca dibuja logos ni textos</b>, ni carteles, neones con el nombre, pantallas con texto legible o la carta. Genera solo la escena.</p>
+    <ol>
+      <li><b>Generar la escena</b> dejando libres la zona de arriba a la izquierda (un tercio del ancho × 16 % del alto) para el logo y una franja abajo (15 %) para el CTA.</li>
+      <li><b>Superponer los archivos reales</b> de <code>traemelacarta/logos/</code>, eligiendo la versión según el fondo.</li>
+      <li><b>Agregar los textos</b> con Plus Jakarta Sans e Inter.</li>
+      <li><b>Si aparece un celular</b>, su pantalla se genera en blanco y después se superpone una captura real de la carta de ejemplo.</li>
+    </ol>
+    <h3>Prompt base</h3>
+<pre class="prompt">Photorealistic image for a social media post, {formato} format. {escena}.
+Setting: a modern, bright café-bar in Argentina with sage and emerald green walls
+(#2ECC71 accents), light wood tables, green bar stools, lots of plants, large
+windows with soft natural daylight, warm string lights. Real colors, no heavy filters.
+
+Composition, mandatory: leave the TOP-LEFT corner (about one third of the width and
+the top 16% of the height) clean and uncluttered, and a calm band across the BOTTOM
+15% of the height. If a phone is visible, its screen is blank or out of focus.
+
+Do not include any text, letters, numbers, words, logos, signs, neon signs, menus with
+readable text, watermarks or brand names anywhere in the image.</pre>
+    <p>Prompt negativo: <code>text, letters, words, numbers, logo, brand, neon sign, signage, readable menu, readable screen, watermark, prices</code></p>
+  </section>
+
+  <section>
+    <h2><span class="num">09</span>Campañas activas</h2>
+    <a class="campana" href="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/">
+      <img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-01-bar-prehistorico.jpg" alt="">
+      <div><b>Lanzamiento · "Sacá a tu bar del pasado"</b>3 posteos informativos y un reel que va de un bar prehistórico a uno moderno. <span style="color:var(--verde-osc);font-weight:600">Ver guía →</span></div>
+    </a>
+  </section>
+
+  <footer>
+    Versión para IA: <a href="https://agucorrea.github.io/plantillas/traemelacarta/marca.md">marca.md</a> ·
+    <a href="https://agucorrea.github.io/plantillas/">Todas las marcas</a>
+  </footer>
+</div>
+</body>
+</html>

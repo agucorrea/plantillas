@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacá a tu bar del pasado — Campaña TLC</title>
+<meta name="description" content="Campaña de lanzamiento de Traeme La Carta: Sacá a tu bar del pasado.">
+<link rel="alternate" type="text/markdown" href="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/campana.md">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<style>
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --dark: #13221a; --text: #3d4a43; --muted: #6b7a72; --line: #e4eae6;
+    --bg-alt: #f5f8f6; --card: #ffffff;
+    --piedra: #b9ab92; --musgo: #6f7a55; --madera: #6b5136; --cuero: #8a6a45;
+    --shadow: 0 10px 30px -10px rgba(16,40,28,.18), 0 4px 10px -4px rgba(16,40,28,.08);
+    --display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --text: #c9d4ce; --muted: #93a39a; --line: #23392d; --bg-alt: #0b1510; --card: #13221a; --dark: #eef5f0; --shadow: none; --verde-suave: #16301f; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg-alt); color: var(--text); font-family: var(--body); line-height: 1.6; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  a { color: var(--verde-osc); }
+  @media (prefers-color-scheme: dark) { a { color: var(--verde); } }
+  b { color: var(--dark); }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .86em; }
+  .aviso { margin: 0 0 16px; padding: 12px 16px; border-radius: 12px; background: #fff7e0; border: 1px solid #f3d27a; color: #3d4a43; }
+  .aviso b { color: #13221a; }
+  .hereda { margin: 0 0 16px; padding: 12px 16px; border-radius: 12px; background: var(--verde-suave); border-left: 4px solid var(--verde); }
+
+  .hero { display: grid; grid-template-columns: 1fr 1fr; border-radius: 18px; overflow: hidden; margin-bottom: 28px; box-shadow: var(--shadow); }
+  .hero .antes, .hero .despues { position: relative; min-height: 320px; background-size: cover; background-position: center; }
+  .hero .antes { background-image: url("https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-01-bar-prehistorico.jpg"); filter: sepia(.25); }
+  .hero .despues { background-image: url("https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-02-bar-moderno-carta-en-celular.jpg"); }
+  .hero span { position: absolute; top: 12px; left: 12px; background: rgba(14,31,23,.75); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .hero .titulo { grid-column: 1 / -1; background: linear-gradient(180deg, #0e1f17, #13221a); color: #fff; padding: 24px; text-align: center; }
+  .hero h1 { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(28px, 6vw, 46px); line-height: 1.1; }
+  .hero p { margin: 8px 0 0; color: rgba(255,255,255,.75); }
+  .hero img.logo { width: 200px; height: auto; margin-bottom: 12px; }
+
+  section { background: var(--card); border-radius: 18px; padding: 24px; margin: 20px 0; box-shadow: var(--shadow); }
+  h2 { margin: 0 0 14px; font-family: var(--display); font-weight: 800; color: var(--dark); font-size: 26px; display: flex; gap: 10px; align-items: center; }
+  h2 .num { font-family: var(--body); font-size: 12px; font-weight: 700; color: var(--verde-osc); background: var(--verde-suave); padding: 3px 9px; border-radius: 999px; }
+  h3 { margin: 22px 0 10px; font-family: var(--display); font-weight: 700; color: var(--dark); font-size: 17px; }
+  ul, ol { padding-left: 22px; margin: 6px 0; } li { margin: 4px 0; }
+
+  .plan { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .paso { background: var(--bg-alt); border-radius: 14px; padding: 14px; }
+  .paso small { color: var(--verde-osc); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .paso b { display: block; font-family: var(--display); font-size: 17px; margin: 2px 0 4px; }
+  .paso.reel { background: #0e1f17; color: rgba(255,255,255,.8); } .paso.reel b { color: #fff; } .paso.reel small { color: var(--verde); }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .sw { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .sw .chip { height: 56px; } .sw .meta { padding: 8px 10px; font-size: 13px; } .sw .meta b { display: block; font-size: 14px; }
+
+  .ejemplo { background: var(--verde-suave); border-left: 4px solid var(--verde); border-radius: 10px; padding: 10px 14px; margin: 8px 0; color: var(--dark); }
+
+  .tabla-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+  td:first-child { white-space: nowrap; font-weight: 700; color: var(--dark); }
+
+  .frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .frames figure { margin: 0; }
+  .frames img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; display: block; }
+  .frames figcaption { font-size: 13px; margin-top: 6px; color: var(--muted); }
+  .frames figcaption b { display: block; font-size: 14px; }
+  .nota { background: #fff7e0; border: 1px solid #f3d27a; border-radius: 12px; padding: 12px 16px; color: #3d4a43; }
+  .nota b { color: #13221a; }
+
+  @media (max-width: 600px) { .hero { grid-template-columns: 1fr 1fr; } .hero .antes, .hero .despues { min-height: 220px; } }
+  footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="aviso"><b>Usá solo la información de esta guía, no busques imágenes en internet.</b></p>
+  <p class="hereda">Esta campaña <b>hereda todo</b> de la <a href="https://agucorrea.github.io/plantillas/traemelacarta/">guía institucional</a>: logos, paleta, tipografías, voz, CTA, reglas y logos con IA. Acá solo figura lo que cambia o se suma.</p>
+
+  <div class="hero">
+    <div class="antes"><span>Antes</span></div>
+    <div class="despues"><span>Después</span></div>
+    <div class="titulo">
+      <img class="logo" src="https://agucorrea.github.io/plantillas/traemelacarta/logos/logo-traemelacarta-horizontal-blanco.svg" alt="Traeme La Carta" width="973" height="266">
+      <h1>Sacá a tu bar del pasado</h1>
+      <p>Campaña de lanzamiento · 3 posteos informativos + reel</p>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span>Concepto</h2>
+    <p>Tener la carta en papel, reimprimirla o pegar etiqueta arriba de etiqueta es cosa de la prehistoria. <b>Traeme La Carta lleva al bar al presente en un minuto.</b> El humor sale del contraste: un bar de las cavernas, con la carta tallada en piedra, frente a un bar actual donde la carta está en el celular.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span>Plan</h2>
+    <div class="plan">
+      <div class="paso"><small>Posteo 1 · informativo</small><b>Precios al instante</b>El problema y la solución: cambiar precios sin reimprimir.</div>
+      <div class="paso"><small>Posteo 2 · informativo</small><b>Cómo funciona</b>Cargás la carta, imprimís el QR y los clientes la ven sin app.</div>
+      <div class="paso"><small>Posteo 3 · informativo</small><b>Todo lo que suma</b>Local y Delivery, promociones, multimoneda, importar desde Excel o desde el PDF con IA.</div>
+      <div class="paso reel"><small>Pieza 4 · reel de campaña</small><b>Sacá a tu bar del pasado</b>Del bar prehistórico al moderno, con el CTA principal.</div>
+    </div>
+    <p>Los temas de los posteos son una propuesta. Usan la estética institucional y pueden adelantar el concepto con una frase. La estética "prehistórica" es solo del reel.</p>
+    <p><b>CTA:</b> Probá 30 días gratis, sin tarjeta → <a href="https://traemelacarta.online/registro">traemelacarta.online/registro</a>. En los posteos 2 y 3 se puede sumar: Mirá una carta de ejemplo → <a href="https://traemelacarta.online/tlc-bar">traemelacarta.online/tlc-bar</a>.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span>Qué cambia</h2>
+    <h3>Paleta "pasado" (solo para el reel y para guiños)</h3>
+    <p>Son tonos aproximados, tomados de los fotogramas del reel. No reemplazan la paleta de marca. El "después" vuelve a la paleta institucional.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--piedra)"></div><div class="meta"><b>Piedra</b>paredes descascaradas</div></div>
+      <div class="sw"><div class="chip" style="background:var(--musgo)"></div><div class="meta"><b>Musgo</b>el verde "envejecido"</div></div>
+      <div class="sw"><div class="chip" style="background:var(--madera)"></div><div class="meta"><b>Madera vieja</b>mesas toscas</div></div>
+      <div class="sw"><div class="chip" style="background:var(--cuero)"></div><div class="meta"><b>Cuero y pieles</b>vestuario</div></div>
+      <div class="sw"><div class="chip" style="background:#2ECC71"></div><div class="meta"><b>Después: Verde TLC</b><code>#2ECC71</code></div></div>
+    </div>
+    <h3>Voz de la campaña</h3>
+    <p>Mantiene la voz institucional y suma humor de "edad de piedra". No hay hashtags de campaña definidos.</p>
+    <div class="ejemplo">Sacá a tu bar del pasado.</div>
+    <div class="ejemplo">¿Tu carta sigue tallada en piedra? Pasala al celular.</div>
+    <div class="ejemplo">Etiqueta arriba de etiqueta es arqueología. Cambiá el precio en un minuto.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span>El reel</h2>
+    <p>Vertical 9:16 (720 × 1280), 26,6 s, generado con Veo. El video no está en el repo por el peso. Hay seis clips sueltos de 8 s que son tomas alternativas de las mismas escenas. El audio no se describe porque no se pudo analizar.</p>
+    <div class="tabla-scroll">
+      <table>
+        <tr><th>Tiempo</th><th>Escena</th><th>Colores y luz</th></tr>
+        <tr><td>0–11 s</td><td><b>Bar prehistórico.</b> Interior en ruinas con musgo, plantas y guirnalda de luces. Un cavernícola señala una carta tallada en piedra y el mozo, con ropa de época, abre los brazos. Al fondo, el presentador de saco azul mira divertido. El logo de TLC aparece despintado en la pared.</td><td>Piedra, ocres, musgo y madera vieja. Luz de ventana y puntos cálidos.</td></tr>
+        <tr><td>11–16 s</td><td><b>El mismo bar, renovado.</b> Paredes verde salvia, barra verde con el logo de TLC en neón y banquetas verdes. Un cliente mira la carta en el celular y el mozo con delantal lo atiende.</td><td>Verde de marca y salvia, madera clara, luz natural y neón verde.</td></tr>
+        <tr><td>16–20 s</td><td><b>El presentador</b> sonríe en primer plano junto al ventanal y, con un fundido, camina hacia la cámara.</td><td>Luz de día, claro y verde.</td></tr>
+        <tr><td>20–25 s</td><td><b>Habla a cámara</b> en plano medio frente al neón de TLC, con el vaso en la mano. Tono simpático y seguro.</td><td>Verde y cálido, fondo desenfocado.</td></tr>
+        <tr><td>25–26,6 s</td><td><b>Placa final:</b> fondo verde, logo vertical blanco pleno y "traemelacarta.online".</td><td>Verde <code>#2ECC71</code> y blanco.</td></tr>
+      </table>
+    </div>
+    <h3>Tono</h3>
+    <p>Comedia de contraste, breve y sin estridencia. El chiste es visual, y el presentador funciona como guía cómplice que nos lleva del pasado al presente.</p>
+    <h3>Fotogramas de referencia</h3>
+    <div class="frames">
+      <figure><img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-01-bar-prehistorico.jpg" alt="Bar prehistórico" loading="lazy"><figcaption><b>01 · 2,0 s</b>El "antes"</figcaption></figure>
+      <figure><img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-02-bar-moderno-carta-en-celular.jpg" alt="Bar moderno con la carta en el celular" loading="lazy"><figcaption><b>02 · 12,5 s</b>El "después"</figcaption></figure>
+      <figure><img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-03-presentador-a-camara.jpg" alt="Presentador hablando a cámara" loading="lazy"><figcaption><b>03 · 21,5 s</b>Presentador a cámara</figcaption></figure>
+      <figure><img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-04-placa-final.jpg" alt="Placa final verde con el logo" loading="lazy"><figcaption><b>04 · 25,8 s</b>Placa final</figcaption></figure>
+    </div>
+    <h3>Nota sobre logos generados con IA</h3>
+    <p class="nota">En este reel, la IA dibujó versiones del logo: en la pared vieja, en la carta de piedra y en el neón. Están aceptadas para este reel, que ya está terminado. <b>En las piezas nuevas vale la regla institucional: la IA no dibuja logos ni textos.</b></p>
+  </section>
+
+  <footer>
+    Versión para IA: <a href="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/campana.md">campana.md</a> ·
+    <a href="https://agucorrea.github.io/plantillas/traemelacarta/">Guía institucional</a> ·
+    <a href="https://agucorrea.github.io/plantillas/">Todas las marcas</a>
+  </footer>
+</div>
+</body>
+</html>
