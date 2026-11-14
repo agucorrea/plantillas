@@ -23,7 +23,9 @@
 
 Los temas de cada posteo informativo son una propuesta ordenada según los diferenciales. Los posteos usan la estética institucional, con fotos de bar moderno, y pueden adelantar el concepto con una frase, como "¿Tu carta sigue en la edad de piedra?". El reel es la única pieza con la estética "prehistórica".
 
-CTA de toda la campaña: **Probá 30 días gratis, sin tarjeta** → https://traemelacarta.online/registro. En los posteos 2 y 3 se puede sumar el secundario: **Mirá una carta de ejemplo** → https://traemelacarta.online/tlc-bar.
+CTA de toda la campaña: **Probá 30 días gratis, sin tarjeta** → <https://traemelacarta.online/registro>
+
+En los posteos 2 y 3 se puede sumar el secundario: **Mirá una carta de ejemplo** → <https://traemelacarta.online/tlc-bar>
 
 ## Qué cambia respecto de la institucional
 
