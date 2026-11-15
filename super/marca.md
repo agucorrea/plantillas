@@ -17,7 +17,7 @@
 | Frecuencia | FM 107.5 |
 | Ciudad | Rosario |
 | Eslogan | Radio con vos |
-| Hashtags | #Super1075 #Rosario |
+| Hashtags | #Super1075 #RadioConVos #Rosario (fijos, van siempre) |
 | Sitio | super1075.com |
 
 ## Nombre y firma
@@ -25,7 +25,7 @@
 - Se escribe **Super 107.5**, con mayúscula inicial y la frecuencia con punto decimal. En el logo va en mayúsculas: SUPER 107.5.
 - Forma corta en textos: **la Super**, con artículo y en minúscula. Es la forma en que la nombra el propio sitio.
 - Eslogan: **Radio con vos**. En el logo va en mayúsculas: RADIO CON VOS.
-- Hashtags: siempre **#Super1075** y **#Rosario**, en ese orden y sin punto en "1075".
+- Hashtags fijos: **#Super1075 #RadioConVos #Rosario**. Van siempre, los tres y en ese orden, sin punto en "1075".
 - No usar: "Super 1075" en textos (solo en el hashtag y en el dominio), "Súper", "Radio Super".
 
 ## Logo
@@ -124,16 +124,16 @@ Es una radio musical y cercana de Rosario.
 - Tono cálido, de barrio y de ciudad, con energía musical. Cercano pero no chabacano.
 - Nombrar a Rosario y sus lugares con orgullo local.
 - Frases cortas. Se pueden usar emojis al inicio de los títulos de notas, como hace el sitio (🎶🛍️, 🍷🎭), uno o dos por título.
-- Cerrar las publicaciones con **#Super1075 #Rosario**.
+- Cerrar siempre las publicaciones con **#Super1075 #RadioConVos #Rosario**.
 
 Ejemplos de tono:
 
 - "Escuchanos en vivo por la 107.5 y en super1075.com."
-- "La Super, Radio con vos. #Super1075 #Rosario"
+- "La Super, Radio con vos. #Super1075 #RadioConVos #Rosario"
 
 ## Para asistentes de IA
 
-1. Escribir el nombre como **Super 107.5** o **la Super**. El eslogan es **Radio con vos** y los hashtags son **#Super1075 #Rosario**.
+1. Escribir el nombre como **Super 107.5** o **la Super**. El eslogan es **Radio con vos** y los hashtags fijos, que van siempre, son **#Super1075 #RadioConVos #Rosario**.
 2. Elegir la versión del logo según el formato: horizontal para piezas anchas, vertical para cuadradas y verticales, compacto para espacios chicos o como firma.
 3. Nunca generar el logo ni textos dentro de una imagen con IA. Dejar el espacio libre y superponer el archivo real de `super/logos/`.
 4. Usar el naranja `#FF6600` solo para "en vivo".
