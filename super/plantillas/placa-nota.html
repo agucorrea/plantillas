@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Super 107.5 · Placa de nota</title>
+<!--
+PLACA DE NOTA · 1080×1350 (para publicar en redes las notas de super1075.com)
+Marcadores: {{titulo}}, {{imagen}} (URL o data URL de la imagen destacada),
+            {{categoria}} (opcional: "Música", "Rosario"…).
+- {{titulo}} aparece dos veces (texto visible + copia invisible para medir): reemplazar todas.
+- Todos los marcadores tienen que recibir un valor. Sin categoría, pasar una cadena vacía (""):
+  la etiqueta se oculta sola.
+- Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;), igual que en lqv/.
+- Se captura el elemento .lqv-frame a 1080×1350, igual que las plantillas de lqv/plantillas/.
+- El título usa hasta 3 líneas y se achica solo si es largo (sin JavaScript, Chromium 120+).
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@600;700&display=block">
+<style>
+  /* ─── Colores de la marca (super/marca.md) ─── */
+  :root {
+    --azul: #0383f2;          /* Azul Super */
+    --azul-profundo: #1d3f8f; /* fin del degradado azul (estilo de la tarjeta "al aire" del sitio) */
+    --negro: #0b0b0f;
+    --blanco: #ffffff;
+    --display: "Archivo", "Arial Black", sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que lqv/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { display: block; width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--negro); }
+  body { width: 1080px; height: 1350px; overflow: hidden; }
+  .lqv-frame { /* nombre de clase compartido con render.js: es el elemento que se captura */
+    position: relative; overflow: hidden; width: 1080px; height: 1350px;
+    background: linear-gradient(160deg, var(--azul) 0%, #2f6fd6 45%, var(--azul-profundo) 100%);
+    color: var(--blanco); font-family: var(--texto);
+  }
+
+  /* Imagen destacada: parte superior, de borde a borde */
+  .imagen { position: absolute; top: 0; left: 0; right: 0; height: 760px; background: var(--negro); }
+  .imagen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .imagen::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(3,131,242,.55)); }
+
+  /* Logo vertical arriba a la izquierda, sobre la foto (el contorno tipo sticker lo hace legible) */
+  .logo { position: absolute; top: 48px; left: 64px; width: 230px; aspect-ratio: 233.2 / 160.73;
+    background: url("../logos/logo-super-vertical.svg") no-repeat center / contain;
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,.35)); }
+
+  /* Texto: márgenes seguros IG (64 px a los costados, 48 px abajo) */
+  .textos { position: absolute; top: 800px; left: 64px; right: 64px; height: 400px;
+    display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .categoria { align-self: flex-start; padding: 10px 22px; border-radius: 999px; background: var(--blanco); color: var(--azul);
+    font-family: var(--texto); font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .categoria:empty { display: none; }
+
+  /* Título: Archivo ExtraBold, hasta 3 líneas, se achica si no entra */
+  .titulo { font-family: var(--display); font-weight: 800; line-height: 1.06; text-wrap: balance;
+    --fit-base: 92px; --fit-lh: 1.06; --fit-h: 293px; --fit-ls: -.01em; }
+  .titulo .fit-txt { text-shadow: 0 2px 14px rgba(0,0,0,.18); font-size: max(
+    min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+    min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.25),
+    min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.3)
+  ); } /* 1.25 y 1.3: margen para el corte de palabras. Probado con títulos de 1 a 140 caracteres:
+          con valores menores algunos títulos pasan a 4 líneas. */
+
+  /* Pie */
+  .pie { position: absolute; left: 64px; right: 64px; bottom: 48px; display: flex; align-items: center; gap: 14px;
+    font-family: var(--texto); font-weight: 600; font-size: 26px; color: rgba(255,255,255,.85); letter-spacing: .02em; }
+  .pie::before { content: ""; width: 48px; height: 4px; border-radius: 2px; background: var(--blanco); }
+</style>
+</head>
+<body>
+<div class="lqv-frame">
+  <div class="imagen"><img src="{{imagen}}" alt=""></div>
+  <div class="logo"></div>
+  <div class="textos">
+    <div class="categoria">{{categoria}}</div>
+    <div class="titulo fit fit-n"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+  </div>
+  <div class="pie">super1075.com</div>
+</div>
+</body>
+</html>
