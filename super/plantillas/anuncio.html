@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Super 107.5 · Placa de anuncio</title>
+<!--
+PLACA DE ANUNCIO · 1080×1350 (eventos, sorteos y novedades de la Super en redes)
+Misma estética "Sticker" que programa.html: foto con corte en diagonal, bloque sticker,
+barras de audio y logo compacto en el pie.
+
+Marcadores: {{titulo}} (protagonista), {{etiqueta}} (opcional: "Sorteo", "Evento", "Novedad", "En vivo"…),
+            {{detalle}} (opcional, una línea: fecha, hora o lugar), {{texto}} (opcional, hasta 2 líneas),
+            {{foto}} (URL o data URL), {{foto_pos}} (encuadre CSS: "center 30%").
+- {{titulo}} aparece dos veces (texto visible + copia invisible para medir). {{etiqueta}} aparece dos
+  veces (texto + atributo data-etiqueta). {{detalle}} y {{texto}}, tres veces cada uno (texto visible,
+  copia invisible y atributo data-…): reemplazar todas.
+- Todos los marcadores tienen que recibir un valor. Los opcionales vacíos llegan como "" y se ocultan solos.
+- La etiqueta "En vivo" (o "Al aire") se pinta de naranja, como pide la guía; el resto, en azul.
+- Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;), igual que en lqv/.
+- El elemento raíz de 1080×1350 tiene data-marco (el servidor recorta por ahí) y la clase .lqv-frame
+  (la que captura lqv/herramientas/render.js).
+- Título: Archivo ExtraBold, de 112 px a 64 px como mínimo, hasta 3 líneas; si no entra, corta con "…".
+  Detalle: una línea. Texto: hasta 2 líneas. Los dos se achican si son largos y cortan con "…" al mínimo.
+  Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,800;0,900;1,800;1,900&family=Inter:wght@700;800&display=block">
+<style>
+  /* ─── Colores de la marca (super/marca.md) ─── */
+  :root {
+    --azul: #0383f2; --azul-medio: #2f6fd6; --azul-profundo: #1d3f8f;
+    --naranja: #ff6600;              /* solo "En vivo" / "Al aire" */
+    --negro: #030404;                /* contorno del logo */
+    --tinta: #0b0b0f;
+    --hueso: #f1f1f0;                /* letras y borde del logo */
+    --display: "Archivo", "Arial Black", sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que lqv/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  /* Una línea: se achica hasta --fit-min y, si igual no entra, corta con "…" */
+  .fit-1 .fit-txt { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-size: max(var(--fit-min), min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99)); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--tinta); }
+  body { width: 1080px; height: 1350px; overflow: hidden; }
+  .lqv-frame { position: relative; overflow: hidden; width: 1080px; height: 1350px; color: var(--tinta); font-family: var(--texto);
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 55%, var(--azul-profundo) 100%); }
+  .rayos { position: absolute; inset: 0;
+    background: repeating-linear-gradient(-28deg, rgba(255,255,255,.07) 0 60px, transparent 60px 140px); }
+
+  /* Foto con corte en diagonal y borde sticker (negro + claro) */
+  .foto-borde-claro, .foto-borde-negro, .foto { position: absolute; left: 0; right: 0; top: 0; }
+  .foto-borde-claro { height: 806px; background: var(--hueso); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto-borde-negro { height: 788px; background: var(--negro); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto { height: 770px; background: var(--tinta); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Bloque sticker: relleno claro, contorno negro grueso, borde claro y sombra dura */
+  .sticker { position: absolute; left: 60px; right: 60px; bottom: 192px; transform: rotate(-1.6deg);
+    background: var(--hueso); border: 10px solid var(--negro); border-radius: 30px;
+    box-shadow: 0 0 0 10px var(--hueso), 14px 16px 0 10px var(--negro);
+    padding: 54px 36px 34px; display: flex; flex-direction: column; gap: 14px; }
+  .sticker:has(.etiqueta[data-etiqueta=""]) { padding-top: 36px; }
+
+  /* Etiqueta: sticker montado sobre el borde del bloque (naranja solo para "En vivo" / "Al aire") */
+  .etiqueta { position: absolute; left: 34px; top: -46px; transform: rotate(-3deg); max-width: calc(100% - 68px); box-sizing: border-box;
+    display: flex; align-items: center; gap: 12px; padding: 12px 26px; border-radius: 999px;
+    background: var(--azul); color: #fff; border: 7px solid var(--negro); box-shadow: 0 0 0 7px var(--hueso);
+    font-family: var(--texto); font-weight: 800; font-size: 30px; line-height: 1; letter-spacing: .08em; text-transform: uppercase;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .etiqueta:empty, .etiqueta[data-etiqueta=""] { display: none; }
+  .etiqueta[data-etiqueta="en vivo" i], .etiqueta[data-etiqueta="al aire" i] { background: var(--naranja); }
+  .etiqueta[data-etiqueta="en vivo" i]::before, .etiqueta[data-etiqueta="al aire" i]::before {
+    content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+
+  /* Título: protagonista, hasta 3 líneas */
+  .titulo { font-family: var(--display); font-weight: 800; color: var(--tinta); line-height: 1.02; text-wrap: balance;
+    --fit-base: 112px; --fit-min: 64px; --fit-lh: 1.02; --fit-h: 343px; --fit-ls: -.02em; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .16em; margin-bottom: -.16em; /* deja ver las colas (g, j, p, q, y) de la última línea */
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.4)
+    )); }
+
+  /* Detalle: fecha, hora o lugar, una línea destacada en azul */
+  .detalle { font-family: var(--texto); font-weight: 800; color: var(--azul); --fit-base: 40px; --fit-min: 28px; }
+  .detalle[data-detalle=""] { display: none; }
+
+  /* Texto: hasta 2 líneas en cursiva, como la frase de programa.html */
+  .texto { margin-top: 4px; padding-top: 16px; border-top: 4px solid var(--negro);
+    font-family: var(--display); font-weight: 800; font-style: italic; color: var(--tinta); line-height: 1.15; text-wrap: balance;
+    --fit-base: 40px; --fit-min: 30px; --fit-lh: 1.15; --fit-h: 92px; }
+  .texto .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .12em; margin-bottom: -.12em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3)
+    )); }
+  .texto[data-texto=""] { display: none; }
+
+  /* Pie: barras de audio + logo compacto + dominio */
+  .pie { position: absolute; left: 64px; right: 64px; bottom: 48px; height: 102px; display: flex; align-items: center; gap: 22px; }
+  .barras { display: flex; align-items: center; gap: 9px; height: 72px; flex: 1; }
+  .barras i { display: block; width: 12px; border-radius: 6px; background: rgba(255,255,255,.85); }
+  .logo-pie { flex: none; width: 168px; aspect-ratio: 179.93 / 108.86; /* ~60 px de ancho en un celular */
+    background: url("../logos/logo-super-compacto.svg") no-repeat center / contain; }
+  .dominio { font-family: var(--display); font-weight: 900; font-style: italic; font-size: 34px; color: #fff; letter-spacing: .01em; flex: none;
+    text-shadow: 3px 3px 0 var(--negro); }
+</style>
+</head>
+<body>
+<div class="lqv-frame" data-marco>
+  <div class="rayos"></div>
+  <div class="foto-borde-claro"></div>
+  <div class="foto-borde-negro"></div>
+  <div class="foto"><img src="{{foto}}" alt="" style="object-position: {{foto_pos}}"></div>
+  <div class="sticker">
+    <div class="etiqueta" data-etiqueta="{{etiqueta}}">{{etiqueta}}</div>
+    <div class="titulo fit fit-n"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+    <div class="detalle fit fit-1" data-detalle="{{detalle}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{detalle}}</span></div><span class="fit-medida" aria-hidden="true">{{detalle}}</span></div></div>
+    <div class="texto fit fit-n" data-texto="{{texto}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{texto}}</span></div><span class="fit-medida" aria-hidden="true">{{texto}}</span></div></div>
+  </div>
+  <div class="pie">
+    <div class="barras"><i style="height:22%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:40%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:90%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:25%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:28%"></i><i style="height:52%"></i><i style="height:20%"></i></div>
+    <div class="logo-pie"></div>
+    <div class="dominio">super1075.com</div>
+  </div>
+</div>
+</body>
+</html>
