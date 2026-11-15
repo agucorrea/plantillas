@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Super 107.5 · Placa de programa</title>
+<!--
+PLACA DE PROGRAMA · 1080×1350 (para promocionar un programa de la Super en redes)
+Misma estética "Sticker" que placa-nota.html: foto con corte en diagonal, bloque sticker,
+barras de audio y logo vertical.
+
+Marcadores: {{nombre}} (nombre del programa, protagonista), {{dias}} ("Lunes a viernes"),
+            {{horario}} ("19 a 21 hs"), {{conductores}} ("Con Gonzalo Lazzarini"),
+            {{foto}} (URL o data URL), {{foto_pos}} (encuadre CSS: "center 30%"),
+            {{frase}} (opcional, una línea).
+- {{nombre}} y {{conductores}} aparecen dos veces, y {{frase}} tres (texto visible, copia invisible
+  para medir y atributo data-frase): reemplazar todas.
+- Todos los marcadores tienen que recibir un valor. Sin frase, pasar una cadena vacía (""):
+  la línea se oculta sola.
+- Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;), igual que en lqv/.
+- El elemento raíz de 1080×1350 tiene data-marco (el servidor recorta por ahí) y la clase .lqv-frame
+  (la que captura lqv/herramientas/render.js).
+- Nombre: Archivo ExtraBold, de 132 px a 72 px, hasta 2 líneas; si no entra, corta con "…".
+  Conductores y frase: una línea cada uno, se achican si son largos y cortan con "…" al mínimo.
+  Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,800;0,900;1,800;1,900&family=Inter:wght@700;800&display=block">
+<style>
+  /* ─── Colores de la marca (super/marca.md) ─── */
+  :root {
+    --azul: #0383f2; --azul-medio: #2f6fd6; --azul-profundo: #1d3f8f;
+    --negro: #030404;                /* contorno del logo */
+    --tinta: #0b0b0f;
+    --hueso: #f1f1f0;                /* letras y borde del logo */
+    --display: "Archivo", "Arial Black", sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que lqv/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  /* Una línea: se achica hasta --fit-min y, si igual no entra, corta con "…" */
+  .fit-1 .fit-txt { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-size: max(var(--fit-min), min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99)); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--tinta); }
+  body { width: 1080px; height: 1350px; overflow: hidden; }
+  .lqv-frame { position: relative; overflow: hidden; width: 1080px; height: 1350px; color: var(--tinta); font-family: var(--texto);
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 55%, var(--azul-profundo) 100%); }
+  .rayos { position: absolute; inset: 0;
+    background: repeating-linear-gradient(-28deg, rgba(255,255,255,.07) 0 60px, transparent 60px 140px); }
+
+  /* Foto con corte en diagonal y borde sticker (negro + claro) */
+  .foto-borde-claro, .foto-borde-negro, .foto { position: absolute; left: 0; right: 0; top: 0; }
+  .foto-borde-claro { height: 806px; background: var(--hueso); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto-borde-negro { height: 788px; background: var(--negro); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto { height: 770px; background: var(--tinta); clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%); }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .logo { position: absolute; top: 48px; left: 64px; width: 230px; aspect-ratio: 233.2 / 160.73;
+    background: url("../logos/logo-super-vertical.svg") no-repeat center / contain;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,.35)); }
+
+  /* Bloque sticker: relleno claro, contorno negro grueso, borde claro y sombra dura */
+  .sticker { position: absolute; left: 60px; right: 60px; bottom: 164px; transform: rotate(-1.6deg);
+    background: var(--hueso); border: 10px solid var(--negro); border-radius: 30px;
+    box-shadow: 0 0 0 10px var(--hueso), 14px 16px 0 10px var(--negro);
+    padding: 54px 36px 34px; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Horario: sticker azul montado sobre el borde del bloque */
+  .horario { position: absolute; left: 34px; top: -46px; transform: rotate(-3deg); max-width: calc(100% - 68px);
+    display: flex; align-items: center; gap: 14px; padding: 12px 26px; border-radius: 999px; box-sizing: border-box;
+    background: var(--azul); color: #fff; border: 7px solid var(--negro); box-shadow: 0 0 0 7px var(--hueso);
+    font-family: var(--texto); font-weight: 800; font-size: 30px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .horario .sep { width: 10px; height: 10px; border-radius: 50%; background: #fff; flex: none; }
+  .horario span { overflow: hidden; text-overflow: ellipsis; }
+
+  /* Nombre del programa: protagonista */
+  .nombre { font-family: var(--display); font-weight: 800; color: var(--tinta); line-height: 1; text-wrap: balance;
+    --fit-base: 132px; --fit-min: 72px; --fit-lh: 1; --fit-h: 264px; --fit-ls: -.02em; }
+  .nombre .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .16em; margin-bottom: -.16em; /* deja ver las colas (g, j, p, q, y) de la última línea */
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3)
+    )); }
+
+  .conductores { font-family: var(--texto); font-weight: 800; color: var(--azul);
+    --fit-base: 40px; --fit-min: 28px; }
+
+  .frase { margin-top: 4px; padding-top: 16px; border-top: 4px solid var(--negro);
+    font-family: var(--display); font-weight: 800; font-style: italic; color: var(--tinta);
+    --fit-base: 38px; --fit-min: 28px; }
+  .frase[data-frase=""] { display: none; }
+
+  /* Pie: barras de audio + play + dominio */
+  .pie { position: absolute; left: 64px; right: 64px; bottom: 48px; height: 72px; display: flex; align-items: center; gap: 22px; }
+  .barras { display: flex; align-items: center; gap: 9px; height: 72px; flex: 1; }
+  .barras i { display: block; width: 12px; border-radius: 6px; background: rgba(255,255,255,.85); }
+  .play { width: 68px; height: 68px; border-radius: 50%; background: var(--hueso); border: 6px solid var(--negro); box-sizing: border-box;
+    display: grid; place-items: center; flex: none; }
+  .play::before { content: ""; margin-left: 6px; border-style: solid; border-width: 13px 0 13px 21px; border-color: transparent transparent transparent var(--azul); }
+  .dominio { font-family: var(--display); font-weight: 900; font-style: italic; font-size: 34px; color: #fff; letter-spacing: .01em; flex: none;
+    text-shadow: 3px 3px 0 var(--negro); }
+</style>
+</head>
+<body>
+<div class="lqv-frame" data-marco>
+  <div class="rayos"></div>
+  <div class="foto-borde-claro"></div>
+  <div class="foto-borde-negro"></div>
+  <div class="foto"><img src="{{foto}}" alt="" style="object-position: {{foto_pos}}"></div>
+  <div class="logo"></div>
+  <div class="sticker">
+    <div class="horario"><span>{{dias}}</span><i class="sep"></i><span>{{horario}}</span></div>
+    <div class="nombre fit fit-n"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{nombre}}</span></div><span class="fit-medida" aria-hidden="true">{{nombre}}</span></div></div>
+    <div class="conductores fit fit-1"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{conductores}}</span></div><span class="fit-medida" aria-hidden="true">{{conductores}}</span></div></div>
+    <div class="frase fit fit-1" data-frase="{{frase}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{frase}}</span></div><span class="fit-medida" aria-hidden="true">{{frase}}</span></div></div>
+  </div>
+  <div class="pie">
+    <div class="barras"><i style="height:22%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:40%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:90%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:25%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:28%"></i><i style="height:52%"></i><i style="height:20%"></i></div>
+    <div class="play"></div>
+    <div class="dominio">super1075.com</div>
+  </div>
+</div>
+</body>
+</html>
