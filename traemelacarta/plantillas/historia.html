@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Traeme La Carta · Historia</title>
+<!--
+HISTORIA INSTITUCIONAL · 1080×1920 (historias de Instagram y Facebook)
+Misma estética que placa.html: fondo oscuro con brillo verde y puntos, foto arriba que se funde con el fondo,
+título en Plus Jakarta Sans, pastilla verde de CTA, pie con logo y dominio.
+Zonas seguras: nada importante en los 250 px de arriba (ahí solo hay foto) ni en los 340 px de abajo
+(la guía pide 340 por la barra de respuesta; cubre los 300 que pide Instagram). El pie termina en y = 1580.
+
+Marcadores: {{titulo}}, {{texto}} (opcional, hasta 4 líneas), {{cta}} (opcional: "Probá 30 días gratis, sin tarjeta"),
+            {{imagen}} (URL o data URL: foto o fondo generado con IA, sin textos ni logos), {{imagen_pos}} (encuadre CSS).
+- {{titulo}} aparece dos veces (texto visible + copia invisible para medir), {{texto}} tres (texto, copia y atributo
+  data-texto) y {{cta}} dos (texto y atributo). Reemplazar todas.
+- Todos los marcadores tienen que recibir un valor. Los opcionales vacíos llegan como "" y desaparecen sin dejar hueco
+  (la foto crece y ocupa el lugar).
+- Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;).
+- El elemento raíz de 1080×1920 tiene data-marco: el servidor recorta por ahí.
+- Título: de 112 px a 64 px como mínimo, hasta 3 líneas; si no entra, corta con "…". Texto: de 40 a 32 px, hasta 4 líneas.
+  CTA: una línea. Sin precios. Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=block">
+<style>
+  /* ─── Paleta y fuentes (traemelacarta/marca.md) ─── */
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --dark: #13221a;
+    --display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que super/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--ink); }
+  body { width: 1080px; height: 1920px; overflow: hidden; }
+  .pieza { position: relative; overflow: hidden; width: 1080px; height: 1920px; display: flex; flex-direction: column;
+    font-family: var(--texto); color: #fff;
+    background:
+      radial-gradient(rgba(255,255,255,.07) 1.6px, transparent 1.8px) 0 0 / 30px 30px,
+      radial-gradient(1000px 900px at 92% 80%, #1f4a33 0%, transparent 65%),
+      linear-gradient(180deg, var(--ink), var(--dark)); }
+
+  /* Foto: ocupa todo el lugar libre y se funde con el fondo */
+  .foto { flex: 1 1 0; min-height: 560px; position: relative;
+    -webkit-mask-image: linear-gradient(#000 60%, transparent 100%); mask-image: linear-gradient(#000 60%, transparent 100%); }
+  .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .contenido { flex: none; position: relative; margin-top: -120px; padding: 0 64px 48px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 30px; }
+  .contenido > .fit { align-self: stretch; }
+
+  /* Título: hasta 3 líneas */
+  .titulo { font-family: var(--display); font-weight: 800; line-height: 1.04; text-wrap: balance;
+    --fit-base: 112px; --fit-min: 64px; --fit-lh: 1.04; --fit-h: 350px; --fit-ls: -.035em; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .14em; margin-bottom: -.14em; /* deja ver las colas (g, j, p, q, y) */
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.4)
+    )); }
+
+  /* Texto: hasta 3 líneas */
+  .texto { font-weight: 500; color: rgba(255,255,255,.8); line-height: 1.36; text-wrap: pretty;
+    --fit-base: 40px; --fit-min: 32px; --fit-lh: 1.36; --fit-h: 218px; }
+  .texto .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.2),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.25),
+      min(var(--fit-base), var(--fit-h) / (4 * var(--fit-lh)), 4 * var(--fit-base) * var(--fit-r) / 1.28)
+    )); }
+  .texto[data-texto=""] { display: none; }
+
+  /* CTA: el botón principal del sitio (verde con texto oscuro) */
+  .cta { display: flex; align-items: center; gap: 18px; max-width: 100%; box-sizing: border-box; margin-top: 6px;
+    padding: 26px 38px 26px 42px; border-radius: 999px; background: var(--verde); color: var(--ink);
+    font-weight: 700; font-size: 38px; line-height: 1.1; white-space: nowrap; box-shadow: 0 16px 44px -14px rgba(46,204,113,.6); }
+  .cta span { overflow: hidden; text-overflow: ellipsis; }
+  .cta::after { content: "→"; flex: none; }
+  .cta[data-cta=""] { display: none; }
+
+  /* Pie: logo horizontal (nombre blanco y mano verde, para fondo oscuro) + dominio */
+  .pie { flex: none; height: 160px; margin: 0 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    border-top: 2px solid rgba(255,255,255,.1); }
+  .logo-pie { flex: none; height: 96px; aspect-ratio: 973.4 / 266.14;
+    background: url("../logos/logo-traemelacarta-horizontal-blanco.svg") no-repeat center / contain; }
+  .dominio { font-weight: 700; font-size: 36px; color: #fff; white-space: nowrap; }
+  .dominio b { font-weight: 700; color: var(--verde); }
+
+  /* Zona segura de abajo (340 px): sin contenido */
+  .zona-segura { flex: none; height: 340px; }
+</style>
+</head>
+<body>
+<div class="pieza" data-marco>
+  <div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div>
+  <div class="contenido">
+    <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+    <div class="texto fit" data-texto="{{texto}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{texto}}</span></div><span class="fit-medida" aria-hidden="true">{{texto}}</span></div></div>
+    <div class="cta" data-cta="{{cta}}"><span>{{cta}}</span></div>
+  </div>
+  <div class="pie">
+    <div class="logo-pie" role="img" aria-label="Traeme La Carta"></div>
+    <div class="dominio">traemelacarta<b>.online</b></div>
+  </div>
+  <div class="zona-segura"></div>
+</div>
+</body>
+</html>

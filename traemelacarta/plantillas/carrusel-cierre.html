@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Traeme La Carta · Carrusel: cierre</title>
+<!--
+CARRUSEL · CIERRE · 1080×1350 (última lámina de un carrusel)
+Sin foto: fondo verde de marca, título, logo vertical blanco pleno grande (la versión para el verde),
+CTA y el dominio bien visible, como la placa final del reel.
+
+Marcadores: {{titulo}} ("¿Seguís pegando etiquetas?"), {{cta}} ("Probá 30 días gratis, sin tarjeta").
+- {{titulo}} aparece dos veces (texto visible + copia invisible para medir) y {{cta}}, dos (texto y atributo
+  data-cta). Reemplazar todas.
+- Los dos marcadores tienen que recibir un valor. Si el CTA llegara vacío (""), se oculta sin dejar hueco.
+- Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;).
+- El elemento raíz de 1080×1350 tiene data-marco: el servidor recorta por ahí.
+- Título: de 100 px a 60 px como mínimo, hasta 3 líneas; si no entra, corta con "…". CTA: una línea.
+  Sin precios. Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=block">
+<style>
+  /* ─── Paleta y fuentes (traemelacarta/marca.md) ─── */
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --dark: #13221a;
+    --display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que super/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--verde); }
+  body { width: 1080px; height: 1350px; overflow: hidden; }
+  .pieza { position: relative; overflow: hidden; width: 1080px; height: 1350px; box-sizing: border-box; padding: 118px 64px 92px;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
+    font-family: var(--texto); color: var(--ink);
+    background:
+      radial-gradient(rgba(14,31,23,.09) 1.6px, transparent 1.8px) 0 0 / 30px 30px,
+      radial-gradient(760px 560px at 50% 48%, #5fe197 0%, transparent 70%),
+      var(--verde); }
+
+  /* Título: hasta 3 líneas, centrado */
+  .titulo { align-self: stretch; font-family: var(--display); font-weight: 800; line-height: 1.04; text-wrap: balance;
+    --fit-base: 100px; --fit-min: 60px; --fit-lh: 1.04; --fit-h: 312px; --fit-ls: -.035em; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .14em; margin-bottom: -.14em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.4)
+    )); }
+
+  /* Logo vertical blanco pleno, grande */
+  .logo { flex: none; height: 400px; aspect-ratio: 606 / 663.35;
+    background: url("../logos/logo-traemelacarta-vertical-blanco-pleno.svg") no-repeat center / contain;
+    filter: drop-shadow(0 18px 30px rgba(14,31,23,.18)); }
+
+  .abajo { display: flex; flex-direction: column; align-items: center; gap: 34px; max-width: 100%; }
+
+  /* CTA: píldora oscura sobre el verde */
+  .cta { display: flex; align-items: center; gap: 18px; max-width: 100%; box-sizing: border-box; padding: 24px 38px 24px 42px;
+    border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; font-size: 38px; line-height: 1.1; white-space: nowrap;
+    box-shadow: 0 18px 40px -18px rgba(14,31,23,.6); }
+  .cta span { overflow: hidden; text-overflow: ellipsis; }
+  .cta::after { content: "→"; flex: none; color: var(--verde); }
+  .cta[data-cta=""] { display: none; }
+
+  /* Dominio bien visible */
+  .dominio { font-family: var(--display); font-weight: 800; font-size: 66px; line-height: 1; letter-spacing: -.02em; color: var(--ink); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="pieza" data-marco>
+  <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+  <div class="logo" role="img" aria-label="Traeme La Carta"></div>
+  <div class="abajo">
+    <div class="cta" data-cta="{{cta}}"><span>{{cta}}</span></div>
+    <div class="dominio">traemelacarta.online</div>
+  </div>
+</div>
+</body>
+</html>

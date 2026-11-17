@@ -182,6 +182,28 @@ text, letters, words, numbers, logo, brand, neon sign, signage, readable menu,
 readable screen, watermark, prices
 ```
 
+## Plantillas de piezas
+
+Están en `traemelacarta/plantillas/` (https://github.com/agucorrea/plantillas/tree/main/traemelacarta/plantillas). El servidor reemplaza cada `{{campo}}` con su valor, escapado para HTML, y recorta la imagen por el elemento que tiene el atributo `data-marco`.
+
+Reglas comunes:
+
+- Todos los campos tienen que llegar. Los opcionales llegan como `""` y, si están vacíos, no se muestran ni dejan hueco.
+- `imagen` es una URL o data URL: una foto o un fondo generado con IA, sin textos ni logos. Siempre va con `imagen_pos`, que define el encuadre en CSS (por ejemplo `center 30%`).
+- En el pie van el logo de `traemelacarta/logos/` y el dominio **traemelacarta.online**. Los links (`/registro`, `/tlc-bar`) siguen yendo en el texto del posteo o en la bio.
+- Nunca muestran un precio ni dejan espacio para precios.
+- Los títulos se achican solos hasta un mínimo legible en el celular. Como último recurso, cortan con "…".
+
+| Archivo | Tamaño | Datos (* opcional) | Uso |
+|---|---|---|---|
+| `placa.html` | 1080 × 1350 | `titulo`, `texto`* (hasta 3 líneas), `etiqueta`* ("Tip", "Novedad"), `cta`*, `imagen`, `imagen_pos` | Publicación única |
+| `carrusel-portada.html` | 1080 × 1350 | `titulo`, `bajada`* (hasta 2 líneas), `imagen`, `imagen_pos` | Primera lámina de un carrusel, con la señal "Deslizá" |
+| `carrusel-lamina.html` | 1080 × 1350 | `numero` ("02"), `titulo`, `texto` (hasta 5 líneas), `imagen`*, `imagen_pos` | Láminas intermedias con tips o pasos. Sin imagen, la lámina es solo texto sobre el fondo de marca |
+| `carrusel-cierre.html` | 1080 × 1350 | `titulo`, `cta` | Última lámina: fondo verde, logo vertical blanco pleno grande y el dominio. No lleva foto |
+| `historia.html` | 1080 × 1920 | `titulo`, `texto`* (hasta 4 líneas), `cta`*, `imagen`, `imagen_pos` | Historias. No pone nada importante en los 250 px de arriba ni en los 340 px de abajo |
+| `lanzamiento-placa.html` | 1080 × 1350 | `titulo`, `texto`* (hasta 3 líneas), `cta`*, `imagen`, `imagen_pos` | Campaña "Sacá a tu bar del pasado". El papel viejo y las etiquetas encimadas contrastan con el panel verde. El eslogan va fijo |
+| `lanzamiento-historia.html` | 1080 × 1920 | `titulo`, `texto`* (hasta 4 líneas), `cta`*, `imagen`, `imagen_pos` | La misma campaña en formato historia, con las mismas zonas seguras |
+
 ## Campañas activas
 
 | Campaña | Concepto | Guía |

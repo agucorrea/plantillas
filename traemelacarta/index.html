@@ -254,7 +254,31 @@ readable text, watermarks or brand names anywhere in the image.</pre>
   </section>
 
   <section>
-    <h2><span class="num">09</span>Campañas activas</h2>
+    <h2><span class="num">09</span>Plantillas de piezas</h2>
+    <p>Están en <a href="https://github.com/agucorrea/plantillas/tree/main/traemelacarta/plantillas"><code>traemelacarta/plantillas/</code></a>. El servidor reemplaza cada <code>{{campo}}</code> y recorta la imagen por el elemento con <code>data-marco</code>.</p>
+    <ul>
+      <li>Los opcionales llegan como <code>""</code> y, si están vacíos, no se muestran ni dejan hueco.</li>
+      <li><code>imagen</code> es una URL o data URL: una foto o un fondo generado con IA, sin textos ni logos. Siempre va con <code>imagen_pos</code> para el encuadre (por ejemplo <code>center 30%</code>).</li>
+      <li>Todas llevan en el pie el logo de <code>traemelacarta/logos/</code> y el dominio. Nunca muestran un precio ni dejan espacio para precios.</li>
+      <li>Los títulos se achican solos hasta un mínimo legible en el celular. Como último recurso, cortan con "…".</li>
+    </ul>
+    <div class="tabla-scroll">
+      <table>
+        <tr><th>Archivo</th><th>Tamaño</th><th>Datos</th><th>Uso</th></tr>
+        <tr><td><code>placa.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>texto</code>*, <code>etiqueta</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Publicación única. Texto de hasta 3 líneas y etiqueta tipo "Tip" o "Novedad".</td></tr>
+        <tr><td><code>carrusel-portada.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>bajada</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Primera lámina, con la señal "Deslizá".</td></tr>
+        <tr><td><code>carrusel-lamina.html</code></td><td>1080 × 1350</td><td><code>numero</code>, <code>titulo</code>, <code>texto</code>, <code>imagen</code>*, <code>imagen_pos</code></td><td>Tips o pasos. Texto de hasta 5 líneas. Sin imagen, la lámina es solo texto sobre el fondo de marca.</td></tr>
+        <tr><td><code>carrusel-cierre.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>cta</code></td><td>Última lámina: fondo verde, logo grande y dominio. No lleva foto.</td></tr>
+        <tr><td><code>historia.html</code></td><td>1080 × 1920</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Historias. Deja libres los 250 px de arriba y los 340 px de abajo.</td></tr>
+        <tr><td><code>lanzamiento-placa.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Campaña "Sacá a tu bar del pasado": papel viejo y etiquetas encimadas frente al panel verde. El eslogan va fijo.</td></tr>
+        <tr><td><code>lanzamiento-historia.html</code></td><td>1080 × 1920</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>La misma campaña en formato historia, con las mismas zonas seguras.</td></tr>
+      </table>
+    </div>
+    <p>* Opcional. El dominio <b>traemelacarta.online</b> va escrito en el pie. Los links (<code>/registro</code>, <code>/tlc-bar</code>) siguen yendo en el texto del posteo o en la bio.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>Campañas activas</h2>
     <a class="campana" href="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/">
       <img src="https://agucorrea.github.io/plantillas/traemelacarta/campanas/lanzamiento/referencias/fotograma-01-bar-prehistorico.jpg" alt="">
       <div><b>Lanzamiento · "Sacá a tu bar del pasado"</b>3 posteos informativos y un reel que va de un bar prehistórico a uno moderno. <span style="color:var(--verde-osc);font-weight:600">Ver guía →</span></div>
