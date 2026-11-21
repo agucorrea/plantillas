@@ -131,6 +131,22 @@ Ejemplos de tono:
 - "Escuchanos en vivo por la 107.5 y en super1075.com."
 - "La Super, Radio con vos. #Super1075 #RadioConVos #Rosario"
 
+## Plantillas
+
+Están en `super/plantillas/` (https://github.com/agucorrea/plantillas/tree/main/super/plantillas) y usan la estética "Sticker": foto con corte en diagonal, bloque claro con contorno negro, etiqueta en píldora (naranja solo para "En vivo" o "Al aire"), barras de audio y logo compacto. El servidor reemplaza cada `{{campo}}`, escapado para HTML, y recorta la imagen por el elemento que tiene `data-marco`. Los opcionales (*) llegan como `""` y, si están vacíos, no se muestran ni dejan hueco. Los títulos se achican solos hasta un mínimo legible y, como último recurso, cortan con "…".
+
+| Pieza | Plantilla | Tamaño | Datos (* opcional) | Notas |
+|---|---|---|---|---|
+| Imagen para posteo | `anuncio.html` | 1080 × 1350 | `titulo`, `etiqueta`*, `detalle`*, `texto`*, `foto`, `foto_pos` | Eventos, sorteos y novedades |
+| Placa de nota | `placa-nota.html` | 1080 × 1350 | `titulo`, `categoria`*, `imagen` | |
+| Placa de programa | `programa.html` | 1080 × 1350 | `nombre`, `dias`, `horario`, `conductores`, `frase`*, `foto`, `foto_pos` | |
+| Portada de reel | `portada-reel.html` | 1080 × 1920 | `titulo`, `texto`*, `etiqueta`*, `imagen`, `imagen_pos` | Todo lo importante va en la franja central de 1080 × 1440 (de y = 240 a 1680), que es lo que muestra la grilla del perfil |
+| Portada de Facebook | `portada-facebook.html` | 1640 × 624 | `titulo`, `texto`*, `etiqueta`*, `imagen`, `imagen_pos` | Todo lo importante va en el área central de 1200 × 470. Abajo a la izquierda (foto de perfil) solo hay foto |
+| Miniatura de YouTube | `youtube.html` | 1280 × 720 | `titulo`, `texto`*, `etiqueta`*, `imagen`, `imagen_pos` | Título grande, pensado para 5 o 6 palabras. El texto se recibe pero no se muestra. Abajo a la derecha queda libre para la duración |
+| Imagen para nota del sitio | `nota-sitio.html` | 1200 × 675 | `titulo`*, `texto`*, `etiqueta`*, `imagen`, `imagen_pos` | El título es opcional porque en el sitio ya está en texto. Todo queda a 56 px de los bordes, para el recorte del listado |
+
+Vistas previas: `https://agucorrea.github.io/plantillas/super/ejemplos/<plantilla>.png` (por ejemplo https://agucorrea.github.io/plantillas/super/ejemplos/portada-reel.png).
+
 ## Para asistentes de IA
 
 1. Escribir el nombre como **Super 107.5** o **la Super**. El eslogan es **Radio con vos** y los hashtags fijos, que van siempre, son **#Super1075 #RadioConVos #Rosario**.

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Traeme La Carta · Portada de Facebook</title>
+<!--
+PORTADA DE FACEBOOK · 1640×624
+Facebook la recorta distinto en computadora y en celular: todo lo importante va en el área central de 1200×470
+(de x = 220 a 1420 y de y = 77 a 547). Abajo a la izquierda va la foto de perfil, así que ahí no hay nada clave: ahí
+va la foto, que ocupa la mitad izquierda y se funde con el fondo. Logo, textos y dominio van a la derecha.
+Título: de 80 a 50 px, hasta 2 líneas. Texto: de 30 a 24 px, hasta 2 líneas.
+Estética del sitio renovado, como placa.html: fondo oscuro con brillo verde y puntos, título en Plus Jakarta Sans,
+etiqueta en píldora verde, logo horizontal (nombre blanco y mano verde) y dominio.
+
+Datos: {{titulo}}, {{texto}} (opcional), {{etiqueta}} (opcional: "Tip", "Novedad"…),
+       {{imagen}} (URL o data URL: foto o fondo generado con IA, sin textos ni logos), {{imagen_pos}} (encuadre CSS).
+- Los marcadores aparecen más de una vez (texto visible, copia invisible para medir y atributo data-…):
+  reemplazar todas las apariciones. Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;).
+- Todos los marcadores tienen que recibir un valor. Los opcionales vacíos llegan como "" y se ocultan sin dejar hueco.
+- El elemento raíz de 1640×624 tiene data-marco: el servidor recorta por ahí.
+- Nunca un precio ni un espacio para precios. Los textos se achican solos hasta un mínimo legible y, como último
+  recurso, cortan con "…". Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=block">
+<style>
+  /* ─── Paleta y fuentes (traemelacarta/marca.md) ─── */
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --dark: #13221a;
+    --display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que super/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--ink); }
+  body { width: 1640px; height: 624px; overflow: hidden; }
+  .pieza { position: relative; overflow: hidden; width: 1640px; height: 624px; font-family: var(--texto); color: #fff;
+    background:
+      radial-gradient(rgba(255,255,255,.07) 1.6px, transparent 1.8px) 0 0 / 30px 30px,
+      radial-gradient(700px 520px at 0% 100%, #1f4a33 0%, transparent 65%),
+      linear-gradient(180deg, var(--ink), var(--dark)); }
+  .foto { position: absolute; top: 0; bottom: 0; right: 0; }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Etiqueta: píldora como la del sitio */
+  .etiqueta { align-self: flex-start; display: flex; align-items: center; gap: .45em; max-width: 100%; box-sizing: border-box;
+    border-radius: 999px; border: 2px solid rgba(46,204,113,.55); background: rgba(14,31,23,.78); color: #9df0bf;
+    font-weight: 700; line-height: 1; white-space: nowrap; }
+  .etiqueta::before { content: ""; flex: none; width: .42em; height: .42em; border-radius: 50%; background: var(--verde); }
+  .etiqueta span { overflow: hidden; text-overflow: ellipsis; }
+  .etiqueta[data-etiqueta=""] { display: none; }
+  .titulo { font-family: var(--display); font-weight: 800; text-wrap: balance; }
+  .texto { font-weight: 500; color: rgba(255,255,255,.8); text-wrap: pretty; }
+  .texto[data-texto=""] { display: none; }
+  .logo { flex: none; aspect-ratio: 973.4 / 266.14; background: url("../logos/logo-traemelacarta-horizontal-blanco.svg") no-repeat center / contain; }
+  .dominio { font-weight: 700; color: #fff; white-space: nowrap; }
+  .dominio b { font-weight: 700; color: var(--verde); }
+
+  /* ─── Diseño de esta pieza ─── */
+  .foto { left: 0; right: auto; width: 900px; -webkit-mask-image: linear-gradient(270deg, transparent 0%, #000 40%); mask-image: linear-gradient(270deg, transparent 0%, #000 40%); }
+  .columna { position: absolute; left: 680px; right: 220px; top: 84px; bottom: 80px; display: flex; flex-direction: column; gap: 16px; }
+  .columna .logo { height: 64px; align-self: flex-start; }
+  .medio { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .etiqueta { padding: 9px 20px 9px 16px; font-size: 22px; }
+  .titulo { line-height: 1.05; --fit-base: 80px; --fit-min: 50px; --fit-lh: 1.05; --fit-h: 168px; --fit-ls: -.03em; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .14em; margin-bottom: -.14em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3)
+    )); }
+  .texto { line-height: 1.32; --fit-base: 30px; --fit-min: 24px; --fit-lh: 1.32; --fit-h: 80px; }
+  .texto .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.2)
+    )); }
+  .dominio { position: absolute; right: 220px; top: 98px; font-size: 26px; }
+</style>
+</head>
+<body>
+<div class="pieza" data-marco>
+  <div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div>
+  <div class="columna">
+    <div class="logo" role="img" aria-label="Traeme La Carta"></div>
+    <div class="medio">
+      <div class="etiqueta" data-etiqueta="{{etiqueta}}"><span>{{etiqueta}}</span></div>
+      <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+      <div class="texto fit" data-texto="{{texto}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{texto}}</span></div><span class="fit-medida" aria-hidden="true">{{texto}}</span></div></div>
+    </div>
+  </div>
+  <div class="dominio">traemelacarta<b>.online</b></div>
+</div>
+</body>
+</html>

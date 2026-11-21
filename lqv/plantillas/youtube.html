@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>LQV · Miniatura de YouTube</title>
+<!--
+MINIATURA DE YOUTUBE · 1280×720
+Título muy grande en Bebas, con alto contraste, para que se lea en tamaño chico. Hasta 3 líneas: pensado para
+5 o 6 palabras como máximo (si el título es más largo, se achica hasta 96 px y corta con "…").
+El texto se recibe pero no se muestra, para no sumar palabras a la miniatura.
+Abajo a la derecha queda libre para la duración que YouTube superpone. Logo de LQV arriba a la izquierda y
+logo de la Super abajo a la izquierda.
+Título: de 168 a 96 px.
+Datos: {{titulo}}, {{texto}} (opcional), {{etiqueta}} (opcional, va en el chip del tema),
+       {{imagen}} (URL o data URL de la foto), {{imagen_pos}} (encuadre CSS, ej. "center 30%").
+- Los marcadores de texto aparecen más de una vez (texto visible, copia invisible para medir y atributo data-…):
+  reemplazar todas las apariciones. Los valores van escapados para HTML, como hace render.js.
+- Los opcionales llegan como "" y se ocultan sin dejar hueco.
+- El elemento raíz tiene data-marco (el servidor recorta por ahí) y la clase .lqv-frame (la que captura render.js).
+- Lo visual sale del tema activo (../temas/activo.css). El logo de la Super se toma de ../../super/logos/.
+- Los textos se achican solos hasta un mínimo legible y, como último recurso, cortan con "…".
+  Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="../temas/activo.css">
+<style>
+  /* ─── Base común (no tocar: solo estructura, todo lo visual viene del tema) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+  html, body { margin: 0; padding: 0; background: var(--lqv-bg-edge); }
+  body { width: 1280px; height: 720px; overflow: hidden; }
+
+  .lqv-frame {
+    position: relative; overflow: hidden; isolation: isolate;
+    width: 1280px; height: 720px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-weight: var(--peso-texto);
+    font-size: 16px;
+  }
+  .lqv-frame::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--fondo-halo); }
+  .lqv-frame::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: var(--fondo-grano); background-size: var(--fondo-grano-tamano);
+    mix-blend-mode: var(--fondo-grano-mezcla);
+  }
+  .lqv-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-repeat: no-repeat; background-position: 0 0; background-size: 100% 100%; }
+  .lqv-piso { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none; background: var(--piso); }
+  .lqv-piso::before {
+    content: ""; position: absolute; top: 0; left: var(--linea-margen); right: var(--linea-margen);
+    height: var(--linea-alto); background: var(--linea); filter: var(--linea-desenfoque); box-shadow: var(--linea-brillo);
+  }
+  .lqv-logo { position: absolute; z-index: 5; aspect-ratio: 534 / 288; background: var(--logo) no-repeat center / contain; filter: var(--logo-brillo); }
+  .lqv-contenido { position: absolute; inset: 0; z-index: 4; }
+
+  /* Foto */
+  .foto {
+    position: relative; overflow: hidden; box-sizing: border-box;
+    width: 100%; height: 100%;
+    background: var(--foto-fondo); border: var(--foto-borde); box-shadow: var(--foto-sombra);
+    border-radius: var(--foto-radio);
+  }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; filter: var(--foto-filtro); }
+
+  /* Día + fecha */
+  .fecha {
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); line-height: 1; white-space: nowrap;
+    --fit-ls: .14em; --fit-sombra: var(--brillo-blanco);
+  }
+  .fecha b { font-weight: inherit; color: var(--acento-fecha); text-shadow: var(--brillo-fecha); }
+
+  /* Botón Spotify (--s = tamaño) */
+  .spotify {
+    display: inline-flex; align-items: center; gap: calc(var(--s) * .32);
+    padding: calc(var(--s) * .22) calc(var(--s) * .5);
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); letter-spacing: .08em; color: var(--boton-texto);
+    border: var(--boton-borde); border-radius: calc(var(--s) * var(--boton-radio));
+    background: var(--boton-fondo); box-shadow: var(--boton-sombra); backdrop-filter: var(--boton-desenfoque);
+  }
+  .spotify-etq { font-size: calc(var(--s) * .52); font-family: var(--fuente-mono); font-weight: var(--peso-mono); text-transform: uppercase; letter-spacing: .2em; opacity: var(--boton-etiqueta-opacidad); }
+  .spotify-ico { display: block; flex: none; width: calc(var(--s) * 1.25); height: calc(var(--s) * 1.25); background: var(--spotify-icono) no-repeat center / contain; filter: var(--spotify-brillo); }
+  .spotify-txt { font-size: calc(var(--s) * 1.1); line-height: 1; letter-spacing: .04em; text-shadow: var(--boton-texto-brillo); text-transform: var(--mayusculas-titulo); }
+
+  /* Ajuste automático de tamaño de texto (sin JavaScript).
+     Una copia invisible mide el ancho del texto en una sola línea; con eso se
+     calcula el tamaño más grande que entra en el ancho y en las líneas
+     disponibles (--fit-base = tamaño ideal, --fit-h = alto máximo). */
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); text-shadow: var(--fit-sombra, none); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { display: block; width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  .fit-1 .fit-txt { white-space: nowrap; font-size: min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99); }
+
+
+  /* ─── Comunes de las piezas nuevas (posteo, reel, Facebook, YouTube) ─── */
+  /* Logo de la Super (compacto), como firma: va en toda pieza de LQV (lqv/marca.md) */
+  .super-logo { flex: none; aspect-ratio: 179.93 / 108.86; background: url("../../super/logos/logo-super-compacto.svg") no-repeat center / contain; }
+  /* Etiqueta opcional: el chip del tema */
+  .chip { padding: 8px 14px; border-radius: var(--chip-radio); background: var(--chip-fondo); border: var(--chip-borde);
+    backdrop-filter: var(--chip-desenfoque); font-family: var(--fuente-mono); font-weight: var(--peso-mono);
+    letter-spacing: .25em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; box-sizing: border-box;
+    color: var(--acento-etiqueta); text-shadow: var(--brillo-chip); }
+  .chip[data-etiqueta=""] { display: none; }
+  .titulo { font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); text-wrap: balance; --fit-ls: .005em; --fit-sombra: var(--brillo-titulo); }
+  .texto { font-family: var(--fuente-texto); font-weight: var(--peso-texto); color: var(--texto-descripcion); text-wrap: pretty;
+    --fit-sombra: var(--brillo-descripcion); }
+  .texto[data-texto=""] { display: none; }
+
+  /* ─── Diseño de esta pieza (solo posiciones y tamaños) ─── */
+  .lqv-deco { background-image: var(--deco-web); }
+  .lqv-piso { height: 22%; }
+  .lqv-logo { top: 40px; left: 48px; width: 210px; }
+
+  .marco-foto { position: absolute; top: 40px; bottom: 40px; left: 640px; right: 40px; }
+  .columna { position: absolute; top: 168px; bottom: 36px; left: 48px; width: 660px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .chip { align-self: flex-start; font-size: 24px; }
+  /* El título pasa por encima del borde de la foto, con un velo para que se lea */
+  .titulo { line-height: 1; --fit-base: 168px; --fit-min: 96px; --fit-lh: 1; --fit-h: 372px; --fit-ls: .01em;
+    --fit-sombra: 0 0 .06em rgba(0,0,0,.9), 0 .04em .12em rgba(0,0,0,.8), var(--brillo-titulo); }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .1em; margin-bottom: -.1em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.18),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.25)
+    )); }
+  .velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,5,15,.92) 0%, rgba(2,5,15,.7) 42%, rgba(2,5,15,0) 62%); }
+  .pie { flex: none; margin-top: auto; display: flex; align-items: center; }
+  .pie .super-logo { width: 120px; }
+</style>
+</head>
+<body>
+<div class="lqv-frame" data-marco>
+  <div class="lqv-deco"></div>
+  <div class="lqv-piso"></div>
+  <div class="lqv-contenido">
+    <div class="marco-foto"><div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div></div>
+    <div class="velo"></div>
+    <div class="columna">
+      <div class="chip" data-etiqueta="{{etiqueta}}">{{etiqueta}}</div>
+      <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+      <div class="pie"><div class="super-logo" role="img" aria-label="Super 107.5"></div></div>
+    </div>
+  </div>
+  <div class="lqv-logo"></div>
+  <!-- {{texto}}: se recibe y no se muestra en la miniatura -->
+</div>
+</body>
+</html>

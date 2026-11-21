@@ -68,6 +68,7 @@
   .ej figcaption { margin-top: 8px; font-size: 15px; color: var(--texto-tenue); }
   .ej figcaption a { color: var(--texto); }
   figure { margin: 0; }
+  .ej-png { display: block; width: 100%; height: auto; border-radius: 10px; }
   .vista { position: relative; overflow: hidden; border-radius: 10px; background: var(--lqv-bg-edge); }
   .vista.v { aspect-ratio: 1080 / 1350; }
   .vista.h { aspect-ratio: 1920 / 1080; }
@@ -199,6 +200,10 @@
         <tr><td>Portada de carrusel</td><td>1080 × 1350</td><td><code>portada-carrusel-1..4.html</code></td><td>64 / 48 px</td></tr>
         <tr><td>Portada web / YouTube</td><td>1920 × 1080</td><td><code>portada-web-1..4.html</code></td><td>96 px a los costados · 54 px arriba y abajo</td></tr>
         <tr><td>Portada de nota en piso</td><td>1920 × 1080</td><td><code>portada-piso.html</code></td><td>96 / 54 px</td></tr>
+        <tr><td>Imagen para posteo</td><td>1080 × 1350</td><td><code>posteo.html</code></td><td>64 / 48 px</td></tr>
+        <tr><td>Portada de reel</td><td>1080 × 1920</td><td><code>portada-reel.html</code></td><td>Lo importante en la franja central de 1080 × 1440</td></tr>
+        <tr><td>Portada de Facebook</td><td>1640 × 624</td><td><code>portada-facebook.html</code></td><td>Lo importante en el centro (1200 × 470); nada clave abajo a la izquierda</td></tr>
+        <tr><td>Miniatura de YouTube</td><td>1280 × 720</td><td><code>youtube.html</code></td><td>48 / 40 px · abajo a la derecha, libre</td></tr>
       </table>
     </div>
     <h3 class="mono">Ejemplos T11 · programa 35</h3>
@@ -207,6 +212,14 @@
       <figure class="ej"><div class="vista v"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-carrusel-2.html" title="Portada de carrusel" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-carrusel-2.html">Portada de carrusel</a></figcaption></figure>
       <figure class="ej"><div class="vista h"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-web-2.html" title="Portada web" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-web-2.html">Portada web / YouTube</a></figcaption></figure>
       <figure class="ej"><div class="vista h"><iframe src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-piso.html" title="Portada en piso" loading="lazy" tabindex="-1"></iframe></div><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-piso.html">Portada de nota en piso</a></figcaption></figure>
+    </div>
+    <h3 class="mono">Posteo, reel, Facebook y YouTube</h3>
+    <p>Reciben <code>titulo</code>, <code>texto</code> (opcional), <code>etiqueta</code> (opcional) e <code>imagen</code> + <code>imagen_pos</code>. Los opcionales llegan como <code>""</code> y se ocultan sin dejar hueco. En YouTube, el título está pensado para 5 o 6 palabras y el texto no se muestra.</p>
+    <div class="ejemplos">
+      <figure class="ej"><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/posteo.png"><img class="ej-png" src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/posteo.png" alt="Ejemplo de imagen para posteo" loading="lazy"></a><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/plantillas/posteo.html">Imagen para posteo</a></figcaption></figure>
+      <figure class="ej"><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-reel.png"><img class="ej-png" src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-reel.png" alt="Ejemplo de portada de reel" loading="lazy"></a><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/plantillas/portada-reel.html">Portada de reel</a></figcaption></figure>
+      <figure class="ej"><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-facebook.png"><img class="ej-png" src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-facebook.png" alt="Ejemplo de portada de facebook" loading="lazy"></a><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/plantillas/portada-facebook.html">Portada de Facebook</a></figcaption></figure>
+      <figure class="ej"><a href="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/youtube.png"><img class="ej-png" src="https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/youtube.png" alt="Ejemplo de miniatura de youtube" loading="lazy"></a><figcaption><a href="https://agucorrea.github.io/plantillas/lqv/plantillas/youtube.html">Miniatura de YouTube</a></figcaption></figure>
     </div>
     <h3 class="mono">Elementos que se repiten</h3>
     <ul>

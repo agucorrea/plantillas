@@ -203,6 +203,12 @@ Reglas comunes:
 | `historia.html` | 1080 × 1920 | `titulo`, `texto`* (hasta 4 líneas), `cta`*, `imagen`, `imagen_pos` | Historias. No pone nada importante en los 250 px de arriba ni en los 340 px de abajo |
 | `lanzamiento-placa.html` | 1080 × 1350 | `titulo`, `texto`* (hasta 3 líneas), `cta`*, `imagen`, `imagen_pos` | Campaña "Sacá a tu bar del pasado". El papel viejo y las etiquetas encimadas contrastan con el panel verde. El eslogan va fijo |
 | `lanzamiento-historia.html` | 1080 × 1920 | `titulo`, `texto`* (hasta 4 líneas), `cta`*, `imagen`, `imagen_pos` | La misma campaña en formato historia, con las mismas zonas seguras |
+| `portada-facebook.html` | 1640 × 624 | `titulo`, `texto`* (hasta 2 líneas), `etiqueta`*, `imagen`, `imagen_pos` | Portada de la página de Facebook. Todo lo importante va en el área central de 1200 × 470. Abajo a la izquierda, donde va la foto de perfil, solo hay foto |
+| `youtube.html` | 1280 × 720 | `titulo`, `texto`*, `etiqueta`*, `imagen`, `imagen_pos` | Miniatura de YouTube. Título grande, pensado para 5 o 6 palabras. El texto se recibe pero no se muestra. Abajo a la derecha queda libre para la duración |
+
+Como portada de reel se usan `historia.html` y `lanzamiento-historia.html`: lo importante queda entre y = 250 e y = 1580, dentro de la franja central de 1080 × 1440 que muestra la grilla del perfil. La imagen para nota del sitio no aplica a esta marca.
+
+Vistas previas: `https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/<plantilla>.png` (por ejemplo https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/placa.png).
 
 ## Campañas activas
 

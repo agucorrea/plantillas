@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Super 107.5 · Portada de reel</title>
+<!--
+PORTADA DE REEL · 1080×1920
+Instagram la muestra recortada al centro en la grilla del perfil (3:4): todo lo importante (bloque, etiqueta,
+logo y dominio) queda dentro de la franja central de 1080×1440, entre y = 240 e y = 1680. En los 240 px de
+arriba y de abajo solo hay foto y fondo.
+Título: de 124 a 72 px, hasta 3 líneas. Texto: de 42 a 32 px, hasta 2 líneas.
+Misma estética "Sticker" que anuncio.html: foto con corte en diagonal y borde de sticker, bloque claro con contorno
+negro, etiqueta en píldora (naranja solo para "En vivo" / "Al aire"), barras de audio y logo compacto.
+
+Datos: {{titulo}}, {{texto}} (opcional), {{etiqueta}} (opcional: "Sorteo", "Evento", "Novedad", "En vivo"…),
+       {{imagen}} (URL o data URL), {{imagen_pos}} (encuadre CSS: "center 30%").
+- Los marcadores aparecen más de una vez (texto visible, copia invisible para medir y atributo data-…):
+  reemplazar todas las apariciones. Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;).
+- Todos los marcadores tienen que recibir un valor. Los opcionales vacíos llegan como "" y se ocultan sin dejar hueco.
+- El elemento raíz de 1080×1920 tiene data-marco (el servidor recorta por ahí) y la clase .lqv-frame.
+- Los textos se achican solos hasta un mínimo legible y, como último recurso, cortan con "…".
+  Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,800;0,900;1,800;1,900&family=Inter:wght@700;800&display=block">
+<style>
+  /* ─── Colores de la marca (super/marca.md) ─── */
+  :root {
+    --azul: #0383f2; --azul-medio: #2f6fd6; --azul-profundo: #1d3f8f;
+    --naranja: #ff6600;              /* solo "En vivo" / "Al aire" */
+    --negro: #030404;                /* contorno del logo */
+    --tinta: #0b0b0f;
+    --hueso: #f1f1f0;                /* letras y borde del logo */
+    --display: "Archivo", "Arial Black", sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que lqv/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--tinta); }
+  body { width: 1080px; height: 1920px; overflow: hidden; }
+  .lqv-frame { position: relative; overflow: hidden; width: 1080px; height: 1920px; color: var(--tinta); font-family: var(--texto);
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-medio) 55%, var(--azul-profundo) 100%); }
+  .rayos { position: absolute; inset: 0;
+    background: repeating-linear-gradient(-28deg, rgba(255,255,255,.07) 0 60px, transparent 60px 140px); }
+  .foto-borde-claro, .foto-borde-negro, .foto { position: absolute; }
+  .foto-borde-claro { background: var(--hueso); }
+  .foto-borde-negro { background: var(--negro); }
+  .foto { background: var(--tinta); }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Bloque sticker: relleno claro, contorno negro grueso, borde claro y sombra dura */
+  .sticker { position: relative; transform: rotate(-1.6deg);
+    background: var(--hueso); border: 10px solid var(--negro); border-radius: 30px;
+    box-shadow: 0 0 0 10px var(--hueso), 14px 16px 0 10px var(--negro);
+    display: flex; flex-direction: column; }
+  /* Etiqueta: píldora montada sobre el borde del bloque (naranja solo para "En vivo" / "Al aire") */
+  .etiqueta { position: absolute; left: 30px; transform: rotate(-3deg); max-width: calc(100% - 60px); box-sizing: border-box;
+    display: flex; align-items: center; gap: .4em; border-radius: 999px;
+    background: var(--azul); color: #fff; border: 7px solid var(--negro); box-shadow: 0 0 0 7px var(--hueso);
+    font-family: var(--texto); font-weight: 800; line-height: 1; letter-spacing: .08em; text-transform: uppercase;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .etiqueta[data-etiqueta=""] { display: none; }
+  .etiqueta[data-etiqueta="en vivo" i], .etiqueta[data-etiqueta="al aire" i] { background: var(--naranja); }
+  .etiqueta[data-etiqueta="en vivo" i]::before, .etiqueta[data-etiqueta="al aire" i]::before {
+    content: ""; flex: none; width: .46em; height: .46em; border-radius: 50%; background: #fff; }
+  .titulo { font-family: var(--display); font-weight: 800; color: var(--tinta); text-wrap: balance; --fit-ls: -.02em; }
+  .texto { font-family: var(--display); font-weight: 800; font-style: italic; color: var(--tinta); text-wrap: balance;
+    border-top: 4px solid var(--negro); }
+  .texto[data-texto=""] { display: none; }
+
+  /* Pie: barras de audio + logo compacto + dominio */
+  .pie { position: absolute; display: flex; align-items: center; }
+  .barras { display: flex; align-items: center; height: 72%; flex: 1; min-width: 0; overflow: hidden; }
+  .barras i { display: block; flex: none; background: rgba(255,255,255,.85); }
+  .logo-pie { flex: none; aspect-ratio: 179.93 / 108.86; background: url("../logos/logo-super-compacto.svg") no-repeat center / contain; }
+  .dominio { font-family: var(--display); font-weight: 900; font-style: italic; color: #fff; letter-spacing: .01em; flex: none;
+    text-shadow: 3px 3px 0 var(--negro); }
+
+  /* ─── Diseño de esta pieza ─── */
+  .foto-borde-claro, .foto-borde-negro, .foto { left: 0; right: 0; top: 0; clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); }
+  .foto-borde-claro { height: 1186px; } .foto-borde-negro { height: 1168px; } .foto { height: 1150px; }
+  /* El bloque crece hacia arriba desde y = 1428; arriba de y = 240 nunca llega */
+  .sticker { position: absolute; left: 60px; right: 60px; bottom: 492px; padding: 60px 40px 36px; gap: 16px; }
+  .sticker:has(.etiqueta[data-etiqueta=""]) { padding-top: 40px; }
+  .etiqueta { top: -50px; padding: 13px 28px; font-size: 32px; }
+  .titulo { line-height: 1.02; --fit-base: 124px; --fit-min: 72px; --fit-lh: 1.02; --fit-h: 380px; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .16em; margin-bottom: -.16em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.4)
+    )); }
+  .texto { margin-top: 4px; padding-top: 18px; line-height: 1.15; --fit-base: 42px; --fit-min: 32px; --fit-lh: 1.15; --fit-h: 97px; }
+  .texto .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .16em; margin-bottom: -.16em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3)
+    )); }
+  .pie { left: 64px; right: 64px; bottom: 268px; height: 112px; gap: 24px; }
+  .barras { gap: 10px; } .barras i { width: 13px; border-radius: 7px; }
+  .logo-pie { width: 184px; }
+  .dominio { font-size: 38px; }
+</style>
+</head>
+<body>
+<div class="lqv-frame" data-marco>
+  <div class="rayos"></div>
+  <div class="foto-borde-claro"></div>
+  <div class="foto-borde-negro"></div>
+  <div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div>
+  <div class="sticker">
+    <div class="etiqueta" data-etiqueta="{{etiqueta}}">{{etiqueta}}</div>
+    <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+    <div class="texto fit" data-texto="{{texto}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{texto}}</span></div><span class="fit-medida" aria-hidden="true">{{texto}}</span></div></div>
+  </div>
+  <div class="pie">
+    <div class="barras"><i style="height:22%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:40%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:30%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:90%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:25%"></i><i style="height:80%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:28%"></i><i style="height:52%"></i><i style="height:20%"></i></div>
+    <div class="logo-pie" role="img" aria-label="Super 107.5"></div>
+    <div class="dominio">super1075.com</div>
+  </div>
+</div>
+</body>
+</html>

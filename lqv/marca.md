@@ -108,6 +108,12 @@ El estilo es neón de estudio nocturno: fondo azul noche con íconos neón (inst
 | Portada de carrusel (de 1 a 4 notas) | 1080 × 1350 | `plantillas/portada-carrusel-1..4.html` | 64 / 48 px |
 | Portada web / YouTube (de 1 a 4 notas) | 1920 × 1080 | `plantillas/portada-web-1..4.html` | 96 px a los costados, 54 px arriba y abajo |
 | Portada de nota en piso | 1920 × 1080 | `plantillas/portada-piso.html` | 96 / 54 px |
+| Imagen para posteo | 1080 × 1350 | `plantillas/posteo.html` | 64 / 48 px |
+| Portada de reel | 1080 × 1920 | `plantillas/portada-reel.html` | Todo lo importante en la franja central de 1080 × 1440 (de y = 240 a 1680), que es lo que muestra la grilla del perfil |
+| Portada de Facebook | 1640 × 624 | `plantillas/portada-facebook.html` | Todo lo importante en el área central de 1200 × 470. Abajo a la izquierda (foto de perfil) solo va la foto |
+| Miniatura de YouTube | 1280 × 720 | `plantillas/youtube.html` | 48 px a los costados, 40 px arriba y abajo. Abajo a la derecha, libre para la duración |
+
+Las cuatro últimas reciben `titulo`, `texto` (opcional), `etiqueta` (opcional, en el chip) e `imagen` + `imagen_pos`. Los opcionales llegan como `""` y se ocultan sin dejar hueco. Llevan `data-marco` en el elemento raíz y el logo compacto de la Super abajo. En la miniatura de YouTube el título está pensado para 5 o 6 palabras y el texto no se muestra.
 
 ### Elementos que se repiten
 
@@ -128,6 +134,7 @@ Son las plantillas T11 completadas con los datos de `ejemplos/programa-35.json`:
 - https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-carrusel-2.html
 - https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-web-2.html
 - https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/portada-piso.html
+- Vistas previas en PNG de las plantillas nuevas: https://agucorrea.github.io/plantillas/lqv/ejemplos/t11/posteo.png, portada-reel.png, portada-facebook.png y youtube.png (en la misma carpeta)
 
 ## Logo de la Super en las piezas
 

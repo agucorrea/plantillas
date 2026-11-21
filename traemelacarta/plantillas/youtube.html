@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Traeme La Carta · Miniatura de YouTube</title>
+<!--
+MINIATURA DE YOUTUBE · 1280×720
+Título muy grande en blanco sobre el fondo oscuro (alto contraste), para que se lea en tamaño chico. Hasta 3 líneas:
+pensado para 5 o 6 palabras como máximo (si es más largo, se achica hasta 64 px y corta con "…").
+El texto se recibe pero no se muestra, para no sumar palabras a la miniatura.
+Abajo a la derecha queda libre para la duración que YouTube superpone: el logo va arriba a la izquierda y el
+dominio abajo a la izquierda.
+Título: de 112 a 64 px.
+Estética del sitio renovado, como placa.html: fondo oscuro con brillo verde y puntos, título en Plus Jakarta Sans,
+etiqueta en píldora verde, logo horizontal (nombre blanco y mano verde) y dominio.
+
+Datos: {{titulo}}, {{texto}} (opcional), {{etiqueta}} (opcional: "Tip", "Novedad"…),
+       {{imagen}} (URL o data URL: foto o fondo generado con IA, sin textos ni logos), {{imagen_pos}} (encuadre CSS).
+- Los marcadores aparecen más de una vez (texto visible, copia invisible para medir y atributo data-…):
+  reemplazar todas las apariciones. Los valores van escapados para HTML (& → &amp;, < → &lt;, " → &quot;).
+- Todos los marcadores tienen que recibir un valor. Los opcionales vacíos llegan como "" y se ocultan sin dejar hueco.
+- El elemento raíz de 1280×720 tiene data-marco: el servidor recorta por ahí.
+- Nunca un precio ni un espacio para precios. Los textos se achican solos hasta un mínimo legible y, como último
+  recurso, cortan con "…". Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=block">
+<style>
+  /* ─── Paleta y fuentes (traemelacarta/marca.md) ─── */
+  :root {
+    --verde: #2ecc71; --verde-osc: #1fa85a; --verde-suave: #e9f9f0;
+    --ink: #0e1f17; --dark: #13221a;
+    --display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    --texto: "Inter", system-ui, sans-serif;
+  }
+
+  /* ─── Ajuste automático de tamaño de texto (mismo mecanismo que super/plantillas) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+
+  /* ─── Base ─── */
+  html, body { margin: 0; padding: 0; background: var(--ink); }
+  body { width: 1280px; height: 720px; overflow: hidden; }
+  .pieza { position: relative; overflow: hidden; width: 1280px; height: 720px; font-family: var(--texto); color: #fff;
+    background:
+      radial-gradient(rgba(255,255,255,.07) 1.6px, transparent 1.8px) 0 0 / 30px 30px,
+      radial-gradient(700px 520px at 0% 100%, #1f4a33 0%, transparent 65%),
+      linear-gradient(180deg, var(--ink), var(--dark)); }
+  .foto { position: absolute; top: 0; bottom: 0; right: 0; }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Etiqueta: píldora como la del sitio */
+  .etiqueta { align-self: flex-start; display: flex; align-items: center; gap: .45em; max-width: 100%; box-sizing: border-box;
+    border-radius: 999px; border: 2px solid rgba(46,204,113,.55); background: rgba(14,31,23,.78); color: #9df0bf;
+    font-weight: 700; line-height: 1; white-space: nowrap; }
+  .etiqueta::before { content: ""; flex: none; width: .42em; height: .42em; border-radius: 50%; background: var(--verde); }
+  .etiqueta span { overflow: hidden; text-overflow: ellipsis; }
+  .etiqueta[data-etiqueta=""] { display: none; }
+  .titulo { font-family: var(--display); font-weight: 800; text-wrap: balance; }
+  .texto { font-weight: 500; color: rgba(255,255,255,.8); text-wrap: pretty; }
+  .texto[data-texto=""] { display: none; }
+  .logo { flex: none; aspect-ratio: 973.4 / 266.14; background: url("../logos/logo-traemelacarta-horizontal-blanco.svg") no-repeat center / contain; }
+  .dominio { font-weight: 700; color: #fff; white-space: nowrap; }
+  .dominio b { font-weight: 700; color: var(--verde); }
+
+  /* ─── Diseño de esta pieza ─── */
+  .foto { width: 760px; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%); mask-image: linear-gradient(90deg, transparent 0%, #000 38%); }
+  .logo-arriba { position: absolute; top: 40px; left: 48px; height: 70px; }
+  .columna { position: absolute; left: 48px; width: 720px; top: 140px; bottom: 96px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .etiqueta { padding: 11px 24px 11px 20px; font-size: 28px; }
+  /* Subrayado verde de marca debajo del título */
+  .titulo { line-height: 1.02; --fit-base: 112px; --fit-min: 64px; --fit-lh: 1.02; --fit-h: 343px; --fit-ls: -.04em;
+    text-shadow: 0 4px 24px rgba(0,0,0,.45); }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    padding-bottom: .14em; margin-bottom: -.14em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.3),
+      min(var(--fit-base), var(--fit-h) / (3 * var(--fit-lh)), 3 * var(--fit-base) * var(--fit-r) / 1.4)
+    )); }
+  .raya { width: 120px; height: 12px; border-radius: 6px; background: var(--verde); }
+  .dominio { position: absolute; left: 48px; bottom: 40px; font-size: 28px; }
+</style>
+</head>
+<body>
+<div class="pieza" data-marco>
+  <div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div>
+  <div class="logo logo-arriba" role="img" aria-label="Traeme La Carta"></div>
+  <div class="columna">
+    <div class="etiqueta" data-etiqueta="{{etiqueta}}"><span>{{etiqueta}}</span></div>
+    <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+    <div class="raya"></div>
+  </div>
+  <div class="dominio">traemelacarta<b>.online</b></div>
+  <!-- {{texto}}: se recibe y no se muestra en la miniatura -->
+</div>
+</body>
+</html>

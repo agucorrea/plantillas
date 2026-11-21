@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>LQV · Portada de Facebook</title>
+<!--
+PORTADA DE FACEBOOK · 1640×624
+Facebook la recorta distinto en computadora y en celular: todo lo importante va en el área central de
+1200×470 (de x = 220 a 1420 y de y = 77 a 547). Abajo a la izquierda va la foto de perfil, así que ahí no hay
+nada clave: ahí va la foto, y los logos, el título, el texto y el botón van en la columna de la derecha.
+Título: de 96 a 56 px, hasta 2 líneas. Texto: de 32 a 26 px, hasta 2 líneas.
+Datos: {{titulo}}, {{texto}} (opcional), {{etiqueta}} (opcional, va en el chip del tema),
+       {{imagen}} (URL o data URL de la foto), {{imagen_pos}} (encuadre CSS, ej. "center 30%").
+- Los marcadores de texto aparecen más de una vez (texto visible, copia invisible para medir y atributo data-…):
+  reemplazar todas las apariciones. Los valores van escapados para HTML, como hace render.js.
+- Los opcionales llegan como "" y se ocultan sin dejar hueco.
+- El elemento raíz tiene data-marco (el servidor recorta por ahí) y la clase .lqv-frame (la que captura render.js).
+- Lo visual sale del tema activo (../temas/activo.css). El logo de la Super se toma de ../../super/logos/.
+- Los textos se achican solos hasta un mínimo legible y, como último recurso, cortan con "…".
+  Sin JavaScript; requiere Chromium 120 o posterior.
+Guía de marca: ../marca.md
+-->
+<link rel="stylesheet" href="../temas/activo.css">
+<style>
+  /* ─── Base común (no tocar: solo estructura, todo lo visual viene del tema) ─── */
+  @property --fit-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --fit-g { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+  html, body { margin: 0; padding: 0; background: var(--lqv-bg-edge); }
+  body { width: 1640px; height: 624px; overflow: hidden; }
+
+  .lqv-frame {
+    position: relative; overflow: hidden; isolation: isolate;
+    width: 1640px; height: 624px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-weight: var(--peso-texto);
+    font-size: 16px;
+  }
+  .lqv-frame::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--fondo-halo); }
+  .lqv-frame::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: var(--fondo-grano); background-size: var(--fondo-grano-tamano);
+    mix-blend-mode: var(--fondo-grano-mezcla);
+  }
+  .lqv-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; background-repeat: no-repeat; background-position: 0 0; background-size: 100% 100%; }
+  .lqv-piso { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; pointer-events: none; background: var(--piso); }
+  .lqv-piso::before {
+    content: ""; position: absolute; top: 0; left: var(--linea-margen); right: var(--linea-margen);
+    height: var(--linea-alto); background: var(--linea); filter: var(--linea-desenfoque); box-shadow: var(--linea-brillo);
+  }
+  .lqv-logo { position: absolute; z-index: 5; aspect-ratio: 534 / 288; background: var(--logo) no-repeat center / contain; filter: var(--logo-brillo); }
+  .lqv-contenido { position: absolute; inset: 0; z-index: 4; }
+
+  /* Foto */
+  .foto {
+    position: relative; overflow: hidden; box-sizing: border-box;
+    width: 100%; height: 100%;
+    background: var(--foto-fondo); border: var(--foto-borde); box-shadow: var(--foto-sombra);
+    border-radius: var(--foto-radio);
+  }
+  .foto img { display: block; width: 100%; height: 100%; object-fit: cover; filter: var(--foto-filtro); }
+
+  /* Día + fecha */
+  .fecha {
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); line-height: 1; white-space: nowrap;
+    --fit-ls: .14em; --fit-sombra: var(--brillo-blanco);
+  }
+  .fecha b { font-weight: inherit; color: var(--acento-fecha); text-shadow: var(--brillo-fecha); }
+
+  /* Botón Spotify (--s = tamaño) */
+  .spotify {
+    display: inline-flex; align-items: center; gap: calc(var(--s) * .32);
+    padding: calc(var(--s) * .22) calc(var(--s) * .5);
+    font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); letter-spacing: .08em; color: var(--boton-texto);
+    border: var(--boton-borde); border-radius: calc(var(--s) * var(--boton-radio));
+    background: var(--boton-fondo); box-shadow: var(--boton-sombra); backdrop-filter: var(--boton-desenfoque);
+  }
+  .spotify-etq { font-size: calc(var(--s) * .52); font-family: var(--fuente-mono); font-weight: var(--peso-mono); text-transform: uppercase; letter-spacing: .2em; opacity: var(--boton-etiqueta-opacidad); }
+  .spotify-ico { display: block; flex: none; width: calc(var(--s) * 1.25); height: calc(var(--s) * 1.25); background: var(--spotify-icono) no-repeat center / contain; filter: var(--spotify-brillo); }
+  .spotify-txt { font-size: calc(var(--s) * 1.1); line-height: 1; letter-spacing: .04em; text-shadow: var(--boton-texto-brillo); text-transform: var(--mayusculas-titulo); }
+
+  /* Ajuste automático de tamaño de texto (sin JavaScript).
+     Una copia invisible mide el ancho del texto en una sola línea; con eso se
+     calcula el tamaño más grande que entra en el ancho y en las líneas
+     disponibles (--fit-base = tamaño ideal, --fit-h = alto máximo). */
+  .fit { container-type: inline-size; }
+  .fit-fila { display: flex; align-items: flex-start; width: 10000px; --fit-w: 100cqi; }
+  .fit-hueco { flex: 1 1 0; min-width: 0; container-type: inline-size; }
+  .fit-txt, .fit-medida { letter-spacing: var(--fit-ls, normal); text-shadow: var(--fit-sombra, none); }
+  .fit-medida { flex: none; white-space: nowrap; visibility: hidden; height: 0; overflow: hidden; font-size: var(--fit-base); }
+  .fit-txt { display: block; width: var(--fit-w); --fit-g: 100cqi; --fit-r: tan(atan2(var(--fit-w), 10000px - var(--fit-g))); }
+  .fit-1 .fit-txt { white-space: nowrap; font-size: min(var(--fit-base), var(--fit-base) * var(--fit-r) * .99); }
+
+
+  /* ─── Comunes de las piezas nuevas (posteo, reel, Facebook, YouTube) ─── */
+  /* Logo de la Super (compacto), como firma: va en toda pieza de LQV (lqv/marca.md) */
+  .super-logo { flex: none; aspect-ratio: 179.93 / 108.86; background: url("../../super/logos/logo-super-compacto.svg") no-repeat center / contain; }
+  /* Etiqueta opcional: el chip del tema */
+  .chip { padding: 8px 14px; border-radius: var(--chip-radio); background: var(--chip-fondo); border: var(--chip-borde);
+    backdrop-filter: var(--chip-desenfoque); font-family: var(--fuente-mono); font-weight: var(--peso-mono);
+    letter-spacing: .25em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; box-sizing: border-box;
+    color: var(--acento-etiqueta); text-shadow: var(--brillo-chip); }
+  .chip[data-etiqueta=""] { display: none; }
+  .titulo { font-family: var(--fuente-titulo); font-weight: var(--peso-titulo); text-transform: var(--mayusculas-titulo);
+    color: var(--texto); text-wrap: balance; --fit-ls: .005em; --fit-sombra: var(--brillo-titulo); }
+  .texto { font-family: var(--fuente-texto); font-weight: var(--peso-texto); color: var(--texto-descripcion); text-wrap: pretty;
+    --fit-sombra: var(--brillo-descripcion); }
+  .texto[data-texto=""] { display: none; }
+
+  /* ─── Diseño de esta pieza (solo posiciones y tamaños) ─── */
+  .lqv-deco { background-image: var(--deco-web); background-size: cover; background-position: center; }
+  .lqv-piso { height: 22%; }
+  .lqv-logo { top: 84px; left: 640px; width: 200px; }
+
+  /* Área segura central: 1200×470. Foto a la izquierda (abajo va la foto de perfil), textos a la derecha */
+  .marco-foto { position: absolute; top: 84px; bottom: 80px; left: 232px; width: 372px; }
+  .columna { position: absolute; top: 84px; left: 640px; right: 220px; bottom: 80px; display: flex; flex-direction: column; gap: 12px; }
+  .cabeza { flex: none; height: 108px; display: flex; align-items: center; justify-content: flex-end; padding-left: 230px; min-width: 0; }
+  .chip { font-size: 20px; }
+  .medio { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .titulo { line-height: 1.08; --fit-base: 96px; --fit-min: 56px; --fit-lh: 1.08; --fit-h: 208px; }
+  .titulo .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .1em; margin-bottom: -.1em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.5)
+    )); }
+  .texto { line-height: 1.16; --fit-base: 32px; --fit-min: 26px; --fit-lh: 1.16; --fit-h: 75px; }
+  .texto .fit-txt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    padding-bottom: .1em; margin-bottom: -.1em;
+    font-size: max(var(--fit-min), max(
+      min(var(--fit-base), var(--fit-h) / var(--fit-lh), var(--fit-base) * var(--fit-r) * .99),
+      min(var(--fit-base), var(--fit-h) / (2 * var(--fit-lh)), 2 * var(--fit-base) * var(--fit-r) / 1.15)
+    )); }
+  .pie { flex: none; display: flex; align-items: center; justify-content: flex-end; gap: 22px; }
+  .pie .spotify { --s: 32px; }
+  .pie .super-logo { width: 110px; }
+</style>
+</head>
+<body>
+<div class="lqv-frame" data-marco>
+  <div class="lqv-deco"></div>
+  <div class="lqv-piso"></div>
+  <div class="lqv-logo"></div>
+  <div class="lqv-contenido">
+    <div class="columna">
+      <div class="cabeza"><div class="chip" data-etiqueta="{{etiqueta}}">{{etiqueta}}</div></div>
+      <div class="medio">
+        <div class="titulo fit"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{titulo}}</span></div><span class="fit-medida" aria-hidden="true">{{titulo}}</span></div></div>
+        <div class="texto fit" data-texto="{{texto}}"><div class="fit-fila"><div class="fit-hueco"><span class="fit-txt">{{texto}}</span></div><span class="fit-medida" aria-hidden="true">{{texto}}</span></div></div>
+      </div>
+      <div class="pie"><div class="spotify"><span class="spotify-etq">escuchanos en</span><span class="spotify-ico"></span><span class="spotify-txt">Spotify</span></div><div class="super-logo" role="img" aria-label="Super 107.5"></div></div>
+    </div>
+    <div class="marco-foto"><div class="foto"><img src="{{imagen}}" alt="" style="object-position: {{imagen_pos}}"></div></div>
+  </div>
+</div>
+</body>
+</html>

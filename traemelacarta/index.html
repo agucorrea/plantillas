@@ -85,6 +85,13 @@
   .campana img { width: 90px; border-radius: 10px; }
   .campana b { font-family: var(--display); font-size: 18px; display: block; }
 
+  .plantillas { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; align-items: start; margin-top: 14px; }
+  .pl { margin: 0; }
+  .pl img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+  .pl figcaption { margin-top: 8px; font-size: 14px; line-height: 1.4; display: grid; gap: 2px; color: var(--text); }
+  .pl figcaption b { font-size: 16px; color: var(--dark); }
+  .pl .med { color: var(--muted); }
+  .pl .uso { color: var(--muted); font-size: 13px; }
   footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 32px; }
 </style>
 </head>
@@ -254,7 +261,7 @@ readable text, watermarks or brand names anywhere in the image.</pre>
   </section>
 
   <section>
-    <h2><span class="num">09</span>Plantillas de piezas</h2>
+    <h2><span class="num">09</span>Plantillas</h2>
     <p>Están en <a href="https://github.com/agucorrea/plantillas/tree/main/traemelacarta/plantillas"><code>traemelacarta/plantillas/</code></a>. El servidor reemplaza cada <code>{{campo}}</code> y recorta la imagen por el elemento con <code>data-marco</code>.</p>
     <ul>
       <li>Los opcionales llegan como <code>""</code> y, si están vacíos, no se muestran ni dejan hueco.</li>
@@ -262,17 +269,16 @@ readable text, watermarks or brand names anywhere in the image.</pre>
       <li>Todas llevan en el pie el logo de <code>traemelacarta/logos/</code> y el dominio. Nunca muestran un precio ni dejan espacio para precios.</li>
       <li>Los títulos se achican solos hasta un mínimo legible en el celular. Como último recurso, cortan con "…".</li>
     </ul>
-    <div class="tabla-scroll">
-      <table>
-        <tr><th>Archivo</th><th>Tamaño</th><th>Datos</th><th>Uso</th></tr>
-        <tr><td><code>placa.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>texto</code>*, <code>etiqueta</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Publicación única. Texto de hasta 3 líneas y etiqueta tipo "Tip" o "Novedad".</td></tr>
-        <tr><td><code>carrusel-portada.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>bajada</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Primera lámina, con la señal "Deslizá".</td></tr>
-        <tr><td><code>carrusel-lamina.html</code></td><td>1080 × 1350</td><td><code>numero</code>, <code>titulo</code>, <code>texto</code>, <code>imagen</code>*, <code>imagen_pos</code></td><td>Tips o pasos. Texto de hasta 5 líneas. Sin imagen, la lámina es solo texto sobre el fondo de marca.</td></tr>
-        <tr><td><code>carrusel-cierre.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>cta</code></td><td>Última lámina: fondo verde, logo grande y dominio. No lleva foto.</td></tr>
-        <tr><td><code>historia.html</code></td><td>1080 × 1920</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Historias. Deja libres los 250 px de arriba y los 340 px de abajo.</td></tr>
-        <tr><td><code>lanzamiento-placa.html</code></td><td>1080 × 1350</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>Campaña "Sacá a tu bar del pasado": papel viejo y etiquetas encimadas frente al panel verde. El eslogan va fijo.</td></tr>
-        <tr><td><code>lanzamiento-historia.html</code></td><td>1080 × 1920</td><td><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></td><td>La misma campaña en formato historia, con las mismas zonas seguras.</td></tr>
-      </table>
+    <div class="plantillas">
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/placa.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/placa.png" alt="Ejemplo de Imagen para posteo (placa)" loading="lazy"></a><figcaption><b>Imagen para posteo (placa)</b><span class="med">1080 × 1350 · <code>placa.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>etiqueta</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Publicación única. Texto de hasta 3 líneas.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-portada.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-portada.png" alt="Ejemplo de Carrusel: portada" loading="lazy"></a><figcaption><b>Carrusel: portada</b><span class="med">1080 × 1350 · <code>carrusel-portada.html</code></span><span><code>titulo</code>, <code>bajada</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Primera lámina, con la señal "Deslizá".</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-lamina.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-lamina.png" alt="Ejemplo de Carrusel: lámina" loading="lazy"></a><figcaption><b>Carrusel: lámina</b><span class="med">1080 × 1350 · <code>carrusel-lamina.html</code></span><span><code>numero</code>, <code>titulo</code>, <code>texto</code>, <code>imagen</code>*, <code>imagen_pos</code></span><span class="uso">Tips o pasos. Sin imagen, es solo texto sobre el fondo de marca.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-cierre.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/carrusel-cierre.png" alt="Ejemplo de Carrusel: cierre" loading="lazy"></a><figcaption><b>Carrusel: cierre</b><span class="med">1080 × 1350 · <code>carrusel-cierre.html</code></span><span><code>titulo</code>, <code>cta</code></span><span class="uso">Fondo verde, logo grande y dominio. Sin foto.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/historia.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/historia.png" alt="Ejemplo de Historia y portada de reel" loading="lazy"></a><figcaption><b>Historia y portada de reel</b><span class="med">1080 × 1920 · <code>historia.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Deja libres 250 px arriba y 340 px abajo.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/lanzamiento-placa.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/lanzamiento-placa.png" alt="Ejemplo de Lanzamiento: placa" loading="lazy"></a><figcaption><b>Lanzamiento: placa</b><span class="med">1080 × 1350 · <code>lanzamiento-placa.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Campaña "Sacá a tu bar del pasado". El eslogan va fijo.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/lanzamiento-historia.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/lanzamiento-historia.png" alt="Ejemplo de Lanzamiento: historia" loading="lazy"></a><figcaption><b>Lanzamiento: historia</b><span class="med">1080 × 1920 · <code>lanzamiento-historia.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>cta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">La misma campaña en formato historia.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/portada-facebook.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/portada-facebook.png" alt="Ejemplo de Portada de Facebook" loading="lazy"></a><figcaption><b>Portada de Facebook</b><span class="med">1640 × 624 · <code>portada-facebook.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>etiqueta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Todo lo importante va en el área central de 1200 × 470. Abajo a la izquierda, donde va la foto de perfil, solo hay foto.</span></figcaption></figure>
+      <figure class="pl"><a href="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/youtube.png"><img src="https://agucorrea.github.io/plantillas/traemelacarta/ejemplos/youtube.png" alt="Ejemplo de Miniatura de YouTube" loading="lazy"></a><figcaption><b>Miniatura de YouTube</b><span class="med">1280 × 720 · <code>youtube.html</code></span><span><code>titulo</code>, <code>texto</code>*, <code>etiqueta</code>*, <code>imagen</code>, <code>imagen_pos</code></span><span class="uso">Título grande para 5 o 6 palabras. El texto no se muestra. Abajo a la derecha queda libre para la duración.</span></figcaption></figure>
     </div>
     <p>* Opcional. El dominio <b>traemelacarta.online</b> va escrito en el pie. Los links (<code>/registro</code>, <code>/tlc-bar</code>) siguen yendo en el texto del posteo o en la bio.</p>
   </section>

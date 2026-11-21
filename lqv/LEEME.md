@@ -19,6 +19,10 @@ sistema/
     portada-carrusel-1..4.html    1080×1350 (una por cantidad de notas)
     portada-web-1..4.html         1920×1080
     portada-piso.html             1920×1080
+    posteo.html                   1080×1350
+    portada-reel.html             1080×1920
+    portada-facebook.html         1640×624
+    youtube.html                  1280×720
   herramientas/
     render.js             genera los PNG de un programa (para el servidor)
     generar-deco.js       genera el fondo de neones de un tema (una vez por temporada)
@@ -50,6 +54,11 @@ sistema/
   `render.js` ya lo hace.
 - `{{foto_pos}}` es el `object-position` de CSS: el primer valor mueve la foto en horizontal, el
   segundo en vertical (`center 20%` sube el encuadre si se cortan las cabezas).
+
+Las plantillas `posteo`, `portada-reel`, `portada-facebook` y `youtube` usan otros marcadores:
+`{{titulo}}`, `{{texto}}` (opcional), `{{etiqueta}}` (opcional), `{{imagen}}` e `{{imagen_pos}}`.
+Los opcionales se pasan como `""` y se ocultan solos. El elemento raíz tiene `data-marco`.
+`render.js` todavía no las genera.
 
 ## Textos largos
 
